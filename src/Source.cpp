@@ -2,19 +2,8 @@
 
 int main()
 {
-    while (Window::get()->isOpen())
-    {
-        sf::Event event;
-        while (Window::get()->pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                Window::get()->close();
-        }
-
-        Window::get()->clear();
-        // draw
-        Window::get()->display();
-    }
+    Window main_window{ 1280,720, "Zygmunt Latyszewicz snake-game v1.0" };
+    main_window.update();
 
     return 0;
 }
