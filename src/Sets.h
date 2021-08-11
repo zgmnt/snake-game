@@ -1,9 +1,11 @@
 #include "Background.h"
 #include "SetsSwitcher.h"
+#include "Game.h"
 
 class Sets
 {
 	Background background;
+	Game game;
 	Switcher switcher; // current set
 
 public:

@@ -5,7 +5,7 @@ void Window::update()
 	window = new sf::RenderWindow(sf::VideoMode(m_width, m_height), m_window_name);
 	window->setFramerateLimit(25);
 
-	Sets set{ Switcher::menu };
+	Sets set{ Switcher::game };
 	set.load(m_width, m_height);
 
 	while (window->isOpen())
