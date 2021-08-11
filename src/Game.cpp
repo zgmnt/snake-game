@@ -14,6 +14,12 @@ void Game::load(int& WIDTH, int& HEIGHT)
 	exit_texture.loadFromFile("img\\exit.png");
 	exit_sprite = sf::Sprite(exit_texture);
 	exit_sprite.setPosition(WIDTH * 0.64, HEIGHT * 0.86);
+
+	// board texture & sprite
+	board_texture.loadFromFile("img\\board.jpg");
+	board_sprite = sf::Sprite(board_texture);
+	board_sprite.setPosition(50, 50);
+	board_sprite.setScale(0.5, 0.5);
 }
 
 Switcher Game::update(sf::RenderWindow* W)
@@ -41,6 +47,7 @@ void Game::musicPlay()
 void Game::draw(sf::RenderWindow* W)
 {
 	W->draw(game_background_sprite);
+	W->draw(board_sprite);
 	W->draw(exit_sprite);
 }
 

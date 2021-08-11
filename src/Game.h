@@ -13,6 +13,10 @@ class Game
 	sf::Texture game_background_texture;
 	sf::Sprite game_background_sprite;
 
+	// board texture & sprite
+	sf::Texture board_texture;
+	sf::Sprite board_sprite;
+
 	// exit icon
 	sf::Texture exit_texture;
 	sf::Sprite exit_sprite;
