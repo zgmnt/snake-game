@@ -2,7 +2,8 @@
 
 void Sets::update(sf::RenderWindow* W)
 {
-	background.update(W);
+	if (switcher == Switcher::menu)
+		background.update(W);
 }
 
 // init textures of sets //
