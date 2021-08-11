@@ -2,6 +2,8 @@
 
 void Game::load(int& WIDTH, int& HEIGHT)
 {
+	algorithm.load();
+
 	// background
 	game_background_texture.loadFromFile("img\\game_background.jpg");
 	game_background_sprite = sf::Sprite(game_background_texture);
@@ -25,6 +27,7 @@ void Game::load(int& WIDTH, int& HEIGHT)
 Switcher Game::update(sf::RenderWindow* W)
 {
 	doorIconResponse(W);
+	algorithm.update();
 
 	if (bBackToMenu)
 		return Switcher::menu;
@@ -49,6 +52,7 @@ void Game::draw(sf::RenderWindow* W)
 	W->draw(game_background_sprite);
 	W->draw(board_sprite);
 	W->draw(exit_sprite);
+	algorithm.draw(W);
 }
 
 void Game::doorIconResponse(const sf::RenderWindow* W)
