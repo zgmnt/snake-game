@@ -11,6 +11,7 @@ void Algorithm::update()
 	snakeHeadMove();
 	tailFollowHead();
 	switchDirectionArrows();
+	selfEating();
 }
 void Algorithm::draw(sf::RenderWindow* W)
 {
@@ -50,5 +51,19 @@ void Algorithm::drawSnake(sf::RenderWindow* W)
 	{
 		snake_body.setPosition(snake[k].x * square_size + 50, snake[k].y * square_size + 50);
 		W->draw(snake_body);
+	}
+}
+void Algorithm::selfEating()
+{
+	for (short i = self_eating; i < length; i++)
+	{
+		if (snake[0].x == snake[i].x)
+		{
+			if (snake[0].y == snake[i].y)
+			{
+				length = i;
+				break;
+			}
+		}
 	}
 }

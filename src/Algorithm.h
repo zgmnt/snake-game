@@ -15,6 +15,7 @@ class Algorithm
 	// snake body - single square
 	sf::RectangleShape snake_body;
 
+	unsigned short self_eating{ 4 };
 	static const int maxLenght{ 100 };
 	struct Snake
 	{
@@ -39,6 +40,7 @@ class Algorithm
 	void snakeHeadMove();
 	void tailFollowHead();
 	void drawSnake(sf::RenderWindow* W);
+	void selfEating();
 public:
 	Algorithm(Direction dir, unsigned int&& snake_len)
 	{
