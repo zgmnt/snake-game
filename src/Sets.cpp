@@ -6,9 +6,9 @@ void Sets::update(sf::RenderWindow* W)
 		background.update(W);
 	else if (switcher == Switcher::game)
 	{
-		game.update(W);
+		switcher = game.update(W);
 		game.draw(W);
-		game.musicPlay();
+		//game.musicPlay();
 	}
 }
 
