@@ -12,6 +12,7 @@ void Algorithm::update()
 	tailFollowHead();
 	switchDirectionArrows();
 	selfEating();
+	snakeWalls();
 }
 void Algorithm::draw(sf::RenderWindow* W)
 {
@@ -66,4 +67,20 @@ void Algorithm::selfEating()
 			}
 		}
 	}
+}
+void Algorithm::snakeWalls()
+{
+	// horizontal //
+	if (snake[0].x == board_X_fields)
+		snake[0].x = 1;
+
+	else if (snake[0].x == 0)
+		snake[0].x = board_X_fields;
+
+	// vertical //
+	else if (snake[0].y == board_Y_fields)
+		snake[0].y = 1;
+
+	else if (snake[0].y == 0)
+		snake[0].y = board_Y_fields;
 }

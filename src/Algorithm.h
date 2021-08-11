@@ -31,7 +31,7 @@ class Algorithm
 	int square_size{ 16 };
 	int board_texture_size_x{ 0 };
 	int board_texture_size_y{ 0 };
-	int board_X_fields{ 40 };
+	int board_X_fields{ 43 };
 	int board_Y_fields{ 37 };
 
 
@@ -41,6 +41,7 @@ class Algorithm
 	void tailFollowHead();
 	void drawSnake(sf::RenderWindow* W);
 	void selfEating();
+	void snakeWalls();
 public:
 	Algorithm(Direction dir, unsigned int&& snake_len)
 	{
