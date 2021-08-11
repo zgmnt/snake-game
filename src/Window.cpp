@@ -5,6 +5,9 @@ void Window::update()
 	window = new sf::RenderWindow(sf::VideoMode(m_width, m_height), m_window_name);
 	window->setFramerateLimit(25);
 
+	Sets set{};
+	set.load(m_width, m_height);
+
 	while (window->isOpen())
 	{
 		// quit on ESC
@@ -20,7 +23,7 @@ void Window::update()
 		}
 
 		window->clear();
-		//draw
+		set.update(window);
 		window->display();
 	}
 }
