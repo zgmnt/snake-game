@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <iostream>
 
 void Game::load(int& WIDTH, int& HEIGHT)
 {
@@ -29,13 +30,15 @@ void Game::load(int& WIDTH, int& HEIGHT)
 
 Switcher Game::update(sf::RenderWindow* W)
 {
+	std::cout << bEndGame << std::endl;
+	exitIconResponse(W);
 	Algorithm::setBoardFeatures(Board::getTexture(), Board::getSprite());
 
 	gameSettingsResponse(W);
 
 	if (bShowSettings)
 		InGameSettings::update(W, bShowSettings);
-		Algorithm::update(InGameSettings::getSnakeSpeed(), InGameSettings::getBoardSize());
+		Algorithm::update(InGameSettings::getSnakeSpeed(), bEndGame, InGameSettings::getBoardSize());
 
 	if (bBackToMenu)
 		return Switcher::menu;

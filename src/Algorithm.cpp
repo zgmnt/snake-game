@@ -43,7 +43,7 @@ void Algorithm::load()
 	foodGenerator();
 	generateObstacle();
 }
-void Algorithm::update(float snake_speed, float fBOARD_SIZE)
+void Algorithm::update(float snake_speed , bool& bEndGame, float fBOARD_SIZE)
 {
 	// change board size
 	if (Board::getBoardScale() != fBOARD_SIZE)
@@ -64,8 +64,8 @@ void Algorithm::update(float snake_speed, float fBOARD_SIZE)
 		switchDirectionArrows();
 		selfEating();
 		snakeWalls();
-		eatFood();
-		checkSnakeOnObstacles();
+		eatFood(bEndGame);
+		checkSnakeOnObstacles(bEndGame);
 		snake_speed_clock.restart();
 	}
 
@@ -214,7 +214,7 @@ void Algorithm::drawFood(sf::RenderWindow* WINDOW)
 		WINDOW->draw(food_set[z].getFoodSprite());
 	}
 }
-void Algorithm::eatFood()
+void Algorithm::eatFood(bool& bEndGame)
 {
 	size_t  i = food_set.size();
 	while (i--)
@@ -229,7 +229,7 @@ void Algorithm::eatFood()
 				}
 				else if (food_set[i].getFoodType() == FoodType::mushroom)
 				{
-					// end game
+					bEndGame = true;
 				}
 				else if (food_set[i].getFoodType() == FoodType::poisoned)
 				{
@@ -289,7 +289,7 @@ void Algorithm::generateObstacle()
 		}
 	}
 }
-void Algorithm::checkSnakeOnObstacles()
+void Algorithm::checkSnakeOnObstacles(bool& bEndGame)
 {
 	// whether snake head hit obstacle
 	for (size_t n = 0; n < final_obstacles_coords.size(); n++)
@@ -298,7 +298,7 @@ void Algorithm::checkSnakeOnObstacles()
 		{
 			if (final_obstacles_coords[n].y == snake[0].y)
 			{
-				// end game
+				bEndGame = true;
 				break;
 			}
 		}

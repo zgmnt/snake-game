@@ -94,9 +94,9 @@ class Algorithm : public Board
 	sf::Sprite getSnakeHeadSprite(int offset_x, int offset_y);
 	void foodGenerator();
 	void drawFood(sf::RenderWindow* WINDOW);
-	void eatFood();
+	void eatFood(bool& bEndGame);
 	void generateObstacle();
-	void checkSnakeOnObstacles();
+	void checkSnakeOnObstacles(bool& bEndGame);
 	void drawObstacles(sf::RenderWindow* WINDOW);
 	void drawCounter(sf::RenderWindow* W);
 	void drawScoreboard(sf::RenderWindow* W);
@@ -113,7 +113,7 @@ public:
 	explicit Algorithm(unsigned int&& snake_len) : length(snake_len) {}
 	explicit Algorithm(Direction dir = Direction::right) : direction(dir) { }
 	void load();
-	void update(float snake_speed, float fBOARD_SIZE);
+	void update(float snake_speed , bool& bEndGame, float fBOARD_SIZE);
 	void draw(sf::RenderWindow* W);
 	// board
 	void setBoardSize(float fBOARD_SIZE_X, float fBOARD_SIZE_Y);

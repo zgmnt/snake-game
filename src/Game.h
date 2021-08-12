@@ -20,6 +20,7 @@ class Game : public Algorithm, InGameSettings
 	sf::Sprite game_settings_sprite;
 
 	bool bBackToMenu{ false };
+	bool bEndGame{ false };
 	bool bShowSettings{ false };
 
 	// private functions //
