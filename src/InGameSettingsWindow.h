@@ -55,6 +55,13 @@ class InGameSettings
 	int nsize_back_control_type_button_x = 310;
 	int nsize_back_control_type_button_y = 50;
 
+	// music button //
+	sf::RectangleShape inner_music_button;
+	sf::RectangleShape outer_music_button;
+	sf::Text music_text;
+	int nsize_music_button_x = 250;
+	int nsize_music_button_y = 50;
+
 	// main window size
 	int outer_frame_size{ 500 };
 	int inner_frame_size{ 480 };
@@ -70,11 +77,14 @@ class InGameSettings
 	void backToGameButtonUpdate(const sf::RenderWindow* WINDOW, bool &bShowSettings);
 	void obstacleEnableUpdate(const sf::RenderWindow* WINDOW, bool& isObstaclesEnabled);
 	void controlTypeUpdate(const sf::RenderWindow* WINDOW, bool& isArrowControlType);
+	void musicEnableUpdate(const sf::RenderWindow* WINDOW, sf::Music& isMusicPlaying);
+
 public:
 	InGameSettings() {};
 	~InGameSettings() {};
 	void draw(sf::RenderWindow* WINDOW);
-	void update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled, bool& isArrowControlType);
+	void update(sf::RenderWindow* WINDOW, bool& bShowSettings,bool& isObstaclesEnabled, 
+		bool& isArrowControlType, sf::Music& isMusicPlaying, bool& bEndGame);
 	void load(int WIDTH, int HEIGHT);
 	float getSnakeSpeed() { return fsnake_speed; }
 	float getBoardSizeX() { return (fboard_sizeX / 10); }

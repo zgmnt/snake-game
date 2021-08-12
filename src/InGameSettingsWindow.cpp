@@ -39,6 +39,12 @@ void InGameSettings::draw(sf::RenderWindow* WINDOW)
 	WINDOW->draw(outer_control_type_button);
 	WINDOW->draw(inner_control_type_button);
 	WINDOW->draw(control_type_text);
+
+	// music button 
+	WINDOW->draw(outer_music_button);
+	WINDOW->draw(inner_music_button);
+	WINDOW->draw(music_text);
+
 }
 void InGameSettings::load(int WIDTH, int HEIGHT)
 {	
@@ -166,8 +172,25 @@ void InGameSettings::load(int WIDTH, int HEIGHT)
 	control_type_text.setCharacterSize(25);
 	control_type_text.setPosition(inner_control_type_button.getPosition().x + 15, inner_control_type_button.getPosition().y + 8);
 	control_type_text.setFillColor(sf::Color::Red);
+
+	// music button //
+	outer_music_button.setSize(sf::Vector2f(nsize_music_button_x, nsize_music_button_y));
+	outer_music_button.setFillColor(sf::Color(1, 1, 1, 255));
+	outer_music_button.setPosition(innerFrame.getPosition().x / 2 + 100, innerFrame.getPosition().y / 2 + 210);
+	outer_music_button.setOrigin(-10, -10);
+
+	inner_music_button.setSize(sf::Vector2f(nsize_music_button_x - 6, nsize_music_button_y - 6));
+	inner_music_button.setFillColor(sf::Color(211, 211, 211, 255));
+	inner_music_button.setPosition(outer_music_button.getPosition().x + 10, outer_music_button.getPosition().y + 10);
+
+	music_text.setFont(font);
+	music_text.setString("MUSIC : ON");
+	music_text.setCharacterSize(25);
+	music_text.setPosition(inner_music_button.getPosition().x + 55, inner_music_button.getPosition().y + 8);
+	music_text.setFillColor(sf::Color::Red);
 }
-void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled, bool& isArrowControlType)
+void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled,
+bool& isArrowControlType, sf::Music& isMusicPlaying, bool& bEndGame)
 {
 	backToGameButtonUpdate(WINDOW, bShowSettings);
 	snakeSpeedUpdate(WINDOW);
@@ -179,6 +202,7 @@ void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool&
 	boardSizeUpdateX(WINDOW);
 	boardSizeUpdateY(WINDOW);
 	controlTypeUpdate(WINDOW, isArrowControlType);
+	musicEnableUpdate(WINDOW, isMusicPlaying);
 }
 
 // private
@@ -334,5 +358,37 @@ void InGameSettings::controlTypeUpdate(const sf::RenderWindow* WINDOW, bool& isA
 
 		inner_control_type_button.setOrigin(0, 0);
 		control_type_text.setOrigin(0, 0);
+	}
+}
+void InGameSettings::musicEnableUpdate(const sf::RenderWindow* WINDOW, sf::Music& isMusicPlaying)
+{
+	if (isMusicPlaying.getStatus() == 2)
+	{
+		music_text.setString("MUSIC : ON");
+	}
+	else
+	{
+		music_text.setString("MUSIC : OFF");
+	}
+
+	if (outer_music_button.getGlobalBounds().contains((*WINDOW).mapPixelToCoords(sf::Mouse::getPosition(*WINDOW))))
+	{
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			Sleep(100);
+			if (!(isMusicPlaying.getStatus() == 2))
+				isMusicPlaying.play();
+			else
+				isMusicPlaying.pause();
+		}
+
+		inner_music_button.setOrigin(2, 2);
+		music_text.setOrigin(2, 2);
+
+	}
+	else
+	{
+		inner_music_button.setOrigin(0, 0);
+		music_text.setOrigin(0, 0);
 	}
 }

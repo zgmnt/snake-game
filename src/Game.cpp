@@ -53,6 +53,10 @@ void Game::load(int& WIDTH, int& HEIGHT)
 	restart_game_text.setCharacterSize(25);
 	restart_game_text.setPosition(inner_restart_game_button.getPosition().x + 15, inner_restart_game_button.getPosition().y + 8);
 	restart_game_text.setFillColor(sf::Color::Red);
+
+	// game music
+	game_music.openFromFile("audio\\game_music.ogg");
+	game_music.setLoop(true);
 }
 
 Switcher Game::update(sf::RenderWindow* W)
@@ -68,7 +72,8 @@ Switcher Game::update(sf::RenderWindow* W)
 
 	if (bShowSettings)
 	{
-		InGameSettings::update(W, bShowSettings, Algorithm::isObstaclesEnabled(), Algorithm::isArrowControlType());
+		InGameSettings::update(W, bShowSettings, Algorithm::isObstaclesEnabled(),
+			Algorithm::isArrowControlType(), game_music, bEndGame);
 	}
 
 	if (bBackToMenu)
@@ -104,6 +109,7 @@ void Game::draw(sf::RenderWindow* W)
 
 	if (bEndGame)
 	{
+		game_music.stop();
 		drawEndGameAlert(W);
 	}
 }
