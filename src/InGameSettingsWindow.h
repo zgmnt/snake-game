@@ -7,10 +7,11 @@ class InGameSettings
 
 	// board
 	sf::Text text_board_size_string;
-	sf::Text text_board_size;
-	int max_board_size{ 5 };
-	int min_board_size{ 2 };
-	float fboard_size{ 5 }; // init
+
+	float max_board_size{ 5.3 };
+	int min_board_size{ 3 };
+	float fboard_sizeX{ 5 }; // init
+	float fboard_sizeY{ 5 }; // init
 
 	// snake
 	sf::Text text_snake_speed_string;
@@ -23,11 +24,14 @@ class InGameSettings
 	sf::Texture down_texture;
 	sf::Texture horizontal_line_board;
 	sf::Texture horizontal_line_snake;
-	sf::Sprite up_sprite_board_size;
-	sf::Sprite down_sprite_board_size;
+	sf::Sprite up_sprite_board_sizeX;
+	sf::Sprite up_sprite_board_sizeY;
+	sf::Sprite down_sprite_board_sizeX;
+	sf::Sprite down_sprite_board_sizeY;
 	sf::Sprite up_sprite_snake_speed;
 	sf::Sprite down_sprite_snake_speed;
-	sf::Sprite horizontal_line_sprite_board_size;
+	sf::Sprite horizontal_line_sprite_board_sizeX;
+	sf::Sprite horizontal_line_sprite_board_sizeY;
 	sf::Sprite horizontal_line_sprite_snake_speed;
 
 	 // back button
@@ -51,8 +55,10 @@ class InGameSettings
 	sf::RectangleShape innerFrame;
 
 	void snakeSpeedRefresh();
-	void boardSizeRefresh();
-	void boardSizeUpdate(const sf::RenderWindow* WINDOW);
+	void boardSizeRefreshX();
+	void boardSizeRefreshY();
+	void boardSizeUpdateX(const sf::RenderWindow* WINDOW);
+	void boardSizeUpdateY(const sf::RenderWindow* WINDOW);
 	void snakeSpeedUpdate(const sf::RenderWindow* WINDOW);
 	void backToGameButtonUpdate(const sf::RenderWindow* WINDOW, bool &bShowSettings);
 	void obstacleEnableUpdate(const sf::RenderWindow* WINDOW, bool& isObstaclesEnabled);
@@ -63,5 +69,6 @@ public:
 	void update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled);
 	void load(int WIDTH, int HEIGHT);
 	float getSnakeSpeed() { return fsnake_speed; }
-	float getBoardSize() { return (fboard_size / 10); }
+	float getBoardSizeX() { return (fboard_sizeX / 10); }
+	float getBoardSizeY() { return (fboard_sizeY / 10); }
 };

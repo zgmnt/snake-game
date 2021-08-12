@@ -8,10 +8,11 @@ class Board
 public:
 	Board();
 	~Board() {}
-	void setBoardSize(float fBOARD_SIZE);
+	void setBoardSize(float fBOARD_SIZEX,  float fBOARD_SIZEY);
 	sf::Texture getTexture() { return board_texture; }
 	sf::Sprite getSprite() { return board_sprite; }
 	unsigned short getBoardPositionX() { return board_sprite.getPosition().x; }
 	unsigned short getBoardPositionY() { return board_sprite.getPosition().y; }
-	float getBoardScale() { return board_sprite.getScale().x; }
+	float getBoardScaleX() { return board_sprite.getScale().x; }
+	float getBoardScaleY() { return board_sprite.getScale().y; }
 };

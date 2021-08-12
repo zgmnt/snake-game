@@ -43,12 +43,12 @@ void Algorithm::load()
 	foodGenerator();
 	generateObstacle();
 }
-void Algorithm::update(float snake_speed , bool& bEndGame, float fBOARD_SIZE)
+void Algorithm::update(float snake_speed , bool& bEndGame, float fBOARD_SIZEX, float fBOARD_SIZEY)
 {
 	// change board size
-	if (Board::getBoardScale() != fBOARD_SIZE)
+	if ((Board::getBoardScaleX() != fBOARD_SIZEX) || (Board::getBoardScaleY() != fBOARD_SIZEY))
 	{
-		setBoardField(fBOARD_SIZE);
+		setBoardField(fBOARD_SIZEX, fBOARD_SIZEY);
 		food_set.clear();
 		final_obstacles_coords.clear();
 		obstacles_coords.clear();
@@ -333,11 +333,11 @@ void Algorithm::setBoardSize(const sf::Texture& board_texture)
 	board_texture_size_x = board_texture.getSize().x;
 	board_texture_size_y = board_texture.getSize().y;
 }
-void Algorithm::setBoardField(float BOARD_SIZE)
+void Algorithm::setBoardField(float BOARD_SIZEX, float BOARD_SIZEY)
 {
-	Board::setBoardSize(BOARD_SIZE);
-	board_X_fields = int((board_texture_size_x * Board::getBoardScale()) / square_size);
-	board_Y_fields = int((board_texture_size_y * Board::getBoardScale()) / square_size);
+	Board::setBoardSize(BOARD_SIZEX, BOARD_SIZEY);
+	board_X_fields = int((board_texture_size_x * Board::getBoardScaleX()) / square_size);
+	board_Y_fields = int((board_texture_size_y * Board::getBoardScaleY()) / square_size);
 }
 void Algorithm::restartGame()
 {

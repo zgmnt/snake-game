@@ -1,13 +1,9 @@
 #include "Board.h"
 
-void Board::setBoardSize(float fBOARD_SIZE)
+void Board::setBoardSize(float fBOARD_SIZEX, float fBOARD_SIZEY)
 {
-	if(fBOARD_SIZE == 0.5)
-		board_sprite.setPosition(50, 50);
-	else
-		board_sprite.setPosition(150, 100);
-
-	board_sprite.setScale(fBOARD_SIZE, fBOARD_SIZE);
+	board_sprite.setScale(fBOARD_SIZEX, fBOARD_SIZEY);
+	board_sprite.setPosition(50, 50);
 }
 
 Board::Board()

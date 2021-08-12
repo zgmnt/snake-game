@@ -104,7 +104,7 @@ class Algorithm : public Board
 	void scoreAlgorithm();
 	// board
 	void setBoardSize(const sf::Texture& board_texture);
-	void setBoardField(float BOARD_SIZE);
+	void setBoardField(float BOARD_SIZEX, float BOARD_SIZEY);
 public:
 	Algorithm(Direction dir, unsigned int&& snake_len)
 	{
@@ -114,7 +114,7 @@ public:
 	explicit Algorithm(unsigned int&& snake_len) : length(snake_len) {}
 	explicit Algorithm(Direction dir = Direction::right) : direction(dir) { }
 	void load();
-	void update(float snake_speed , bool& bEndGame, float fBOARD_SIZE);
+	void update(float snake_speed , bool& bEndGame, float fBOARD_SIZEX, float fBOARD_SIZEY);
 	void draw(sf::RenderWindow* W);
 	// board
 	void setBoardSize(float fBOARD_SIZE_X, float fBOARD_SIZE_Y);

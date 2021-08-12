@@ -23,10 +23,12 @@ void InGameSettings::draw(sf::RenderWindow* WINDOW)
 
 	// board
 	WINDOW->draw(text_board_size_string);
-	WINDOW->draw(up_sprite_board_size);
-	WINDOW->draw(down_sprite_board_size);
-	WINDOW->draw(horizontal_line_sprite_board_size);
-	WINDOW->draw(text_board_size);
+	WINDOW->draw(up_sprite_board_sizeX);
+	WINDOW->draw(up_sprite_board_sizeY);
+	WINDOW->draw(down_sprite_board_sizeX);
+	WINDOW->draw(down_sprite_board_sizeY);
+	WINDOW->draw(horizontal_line_sprite_board_sizeX);
+	WINDOW->draw(horizontal_line_sprite_board_sizeY);
 
 	// obstacles button
 	WINDOW->draw(outer_obstacles_button);
@@ -37,7 +39,6 @@ void InGameSettings::load(int WIDTH, int HEIGHT)
 {	
 	// font
 	font.loadFromFile("fonts\\mrsmonster.ttf");
-	text_board_size.setFont(font);
 	text_snake_speed.setFont(font);
 	text_board_size_string.setFont(font);
 	text_snake_speed_string.setFont(font);
@@ -73,16 +74,17 @@ void InGameSettings::load(int WIDTH, int HEIGHT)
 	text_board_size_string.setCharacterSize(30);
 	text_board_size_string.setPosition(outerFrame.getPosition().x - 200, outerFrame.getPosition().y - 220);
 	text_board_size_string.setString("BOARD SIZE");
-	text_board_size.setOutlineColor(sf::Color::Red);
-	text_board_size.setFillColor(sf::Color::White);
-	text_board_size.setOutlineThickness(1);
-	text_board_size.setCharacterSize(30);
-	text_board_size.setPosition(text_board_size_string.getPosition().x + 370, text_board_size_string.getPosition().y + 10);
 	horizontal_line_board.loadFromFile("img\\horizontal_line.png");
-	horizontal_line_sprite_board_size = sf::Sprite(horizontal_line_board);
-	horizontal_line_sprite_board_size.setPosition(text_board_size.getPosition().x - text_board_size.getCharacterSize() * 5, text_board_size.getPosition().y + 15);
-	horizontal_line_sprite_board_size.setScale(0.1, 0.1);
-	horizontal_line_sprite_board_size.setColor(sf::Color::White);
+	horizontal_line_sprite_board_sizeX = sf::Sprite(horizontal_line_board);
+	horizontal_line_sprite_board_sizeX.setPosition(text_board_size_string.getPosition().x + 200,
+		text_board_size_string.getPosition().y + 12);
+	horizontal_line_sprite_board_sizeX.setScale(0.1, 0.1);
+	horizontal_line_sprite_board_sizeX.setColor(sf::Color::White);
+	horizontal_line_sprite_board_sizeY = sf::Sprite(horizontal_line_board);
+	horizontal_line_sprite_board_sizeY.setPosition(text_board_size_string.getPosition().x + 250, 
+		text_board_size_string.getPosition().y + 12);
+	horizontal_line_sprite_board_sizeY.setScale(0.1, 0.1);
+	horizontal_line_sprite_board_sizeY.setColor(sf::Color::White);
 
 	// snake
 	text_snake_speed_string.setOutlineColor(sf::Color::Red);
@@ -106,24 +108,28 @@ void InGameSettings::load(int WIDTH, int HEIGHT)
 	up_texture.loadFromFile("img\\volume_up.png");
 	down_texture.loadFromFile("img\\volume_down.png");
 		// board
-	up_sprite_board_size = sf::Sprite(up_texture);
-	up_sprite_board_size.setPosition(horizontal_line_sprite_board_size.getPosition().x, text_board_size.getPosition().y - 13);
-	up_sprite_board_size.setScale(0.23, 0.23);
-	down_sprite_board_size = sf::Sprite(down_texture);
-	down_sprite_board_size.setPosition(horizontal_line_sprite_board_size.getPosition().x, text_board_size.getPosition().y + 23);
-	down_sprite_board_size.setScale(0.23, 0.23);
+	up_sprite_board_sizeX = sf::Sprite(up_texture);
+	up_sprite_board_sizeY = sf::Sprite(up_texture);
+	up_sprite_board_sizeX.setPosition(horizontal_line_sprite_board_sizeX.getPosition().x, horizontal_line_sprite_board_sizeX.getPosition().y - 28);
+	up_sprite_board_sizeY.setPosition(horizontal_line_sprite_board_sizeY.getPosition().x, horizontal_line_sprite_board_sizeY.getPosition().y - 28);
+	up_sprite_board_sizeX.setScale(0.23, 0.23);
+	up_sprite_board_sizeY.setScale(0.23, 0.23);
+	down_sprite_board_sizeX = sf::Sprite(down_texture);
+	down_sprite_board_sizeY = sf::Sprite(down_texture);
+	down_sprite_board_sizeX.setPosition(horizontal_line_sprite_board_sizeX.getPosition().x, horizontal_line_sprite_board_sizeX.getPosition().y + 7);
+	down_sprite_board_sizeY.setPosition(horizontal_line_sprite_board_sizeY.getPosition().x, horizontal_line_sprite_board_sizeY.getPosition().y + 7);
+	down_sprite_board_sizeX.setScale(0.23, 0.23);
+	down_sprite_board_sizeY.setScale(0.23, 0.23);
 		// snake
 	up_sprite_snake_speed = sf::Sprite(up_texture);
-	up_sprite_snake_speed.setPosition(horizontal_line_sprite_board_size.getPosition().x, text_snake_speed.getPosition().y - 13);
+	up_sprite_snake_speed.setPosition(horizontal_line_sprite_snake_speed.getPosition().x, text_snake_speed.getPosition().y - 13);
 	up_sprite_snake_speed.setScale(0.23, 0.23);
 	down_sprite_snake_speed = sf::Sprite(down_texture);
-	down_sprite_snake_speed.setPosition(horizontal_line_sprite_board_size.getPosition().x, text_snake_speed.getPosition().y + 23);
+	down_sprite_snake_speed.setPosition(horizontal_line_sprite_snake_speed.getPosition().x, text_snake_speed.getPosition().y + 23);
 	down_sprite_snake_speed.setScale(0.23, 0.23);
 	
 	// positioning
 	text_snake_speed.setPosition(text_snake_speed_string.getPosition().x + 270, text_snake_speed_string.getPosition().y + 10);
-	text_board_size.setPosition(text_board_size_string.getPosition().x + 270, text_board_size_string.getPosition().y + 10);
-	text_board_size_string.setOrigin(0, -12);
 	text_snake_speed_string.setOrigin(0, -12);
 
 	// obstacles button //
@@ -143,11 +149,14 @@ void InGameSettings::load(int WIDTH, int HEIGHT)
 void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled)
 {
 	backToGameButtonUpdate(WINDOW, bShowSettings);
-	boardSizeUpdate(WINDOW);
 	snakeSpeedUpdate(WINDOW);
 	snakeSpeedRefresh();
-	boardSizeRefresh();
 	obstacleEnableUpdate(WINDOW, isObstaclesEnabled);
+	// BOARD
+	boardSizeRefreshX();
+	boardSizeRefreshY();
+	boardSizeUpdateX(WINDOW);
+	boardSizeUpdateY(WINDOW);
 }
 
 // private
@@ -166,21 +175,6 @@ void InGameSettings::backToGameButtonUpdate(const sf::RenderWindow* WINDOW, bool
 		inner_back_to_game_button.setOrigin(0, 0);
 		back_to_game_text.setOrigin(0, 0);
 	}
-}
-void InGameSettings::boardSizeUpdate(const sf::RenderWindow* WINDOW)
-{
-	if (up_sprite_board_size.getGlobalBounds().contains((*WINDOW).mapPixelToCoords(sf::Mouse::getPosition((*WINDOW)))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	{
-		horizontal_line_sprite_board_size.setColor(sf::Color::Green);
-		fboard_size += 0.3;
-	}
-	else if (down_sprite_board_size.getGlobalBounds().contains((*WINDOW).mapPixelToCoords(sf::Mouse::getPosition((*WINDOW)))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	{
-		horizontal_line_sprite_board_size.setColor(sf::Color::Red);
-		fboard_size -= 0.3;
-	}
-	else
-		horizontal_line_sprite_board_size.setColor(sf::Color::White);
 }
 void InGameSettings::snakeSpeedUpdate(const sf::RenderWindow* WINDOW)
 {
@@ -209,19 +203,6 @@ void InGameSettings::snakeSpeedRefresh()
 	
 	text_snake_speed.setString(std::to_string(fsnake_speed).substr(0, 1));
 }
-void InGameSettings::boardSizeRefresh()
-{
-	// sets the value of board size depending on the change
-	if (fboard_size < min_board_size)
-		fboard_size = min_board_size;
-	if (fboard_size > max_board_size)
-		fboard_size = max_board_size;
-
-	if (fboard_size < 10)
-		text_board_size.setString(std::to_string(fboard_size).substr(0, 1));
-	else
-		text_board_size.setString(std::to_string(fboard_size).substr(0, 2));
-}
 void InGameSettings::obstacleEnableUpdate(const sf::RenderWindow* WINDOW, bool& isObstaclesEnabled)
 {
 	if (isObstaclesEnabled)
@@ -247,4 +228,52 @@ void InGameSettings::obstacleEnableUpdate(const sf::RenderWindow* WINDOW, bool& 
 		inner_obstacles_button.setOrigin(0, 0);
 		obstacles_text.setOrigin(0, 0);
 	}
+}
+
+void InGameSettings::boardSizeUpdateX(const sf::RenderWindow* WINDOW)
+{
+	if (up_sprite_board_sizeX.getGlobalBounds().contains((*WINDOW).mapPixelToCoords(sf::Mouse::getPosition((*WINDOW)))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		horizontal_line_sprite_board_sizeX.setColor(sf::Color::Green);
+		fboard_sizeX += 0.3;
+	}
+	else if (down_sprite_board_sizeX.getGlobalBounds().contains((*WINDOW).mapPixelToCoords(sf::Mouse::getPosition((*WINDOW)))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		horizontal_line_sprite_board_sizeX.setColor(sf::Color::Red);
+		fboard_sizeX -= 0.3;
+	}
+	else
+		horizontal_line_sprite_board_sizeX.setColor(sf::Color::White);
+}
+void InGameSettings::boardSizeRefreshX()
+{
+	// sets the value of board size depending on the change
+	if (fboard_sizeX < min_board_size)
+		fboard_sizeX = min_board_size;
+	if (fboard_sizeX > max_board_size)
+		fboard_sizeX = max_board_size;
+
+}
+void InGameSettings::boardSizeUpdateY(const sf::RenderWindow* WINDOW)
+{
+	if (up_sprite_board_sizeY.getGlobalBounds().contains((*WINDOW).mapPixelToCoords(sf::Mouse::getPosition((*WINDOW)))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		horizontal_line_sprite_board_sizeY.setColor(sf::Color::Green);
+		fboard_sizeY += 0.3;
+	}
+	else if (down_sprite_board_sizeY.getGlobalBounds().contains((*WINDOW).mapPixelToCoords(sf::Mouse::getPosition((*WINDOW)))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		horizontal_line_sprite_board_sizeY.setColor(sf::Color::Red);
+		fboard_sizeY -= 0.3;
+	}
+	else
+		horizontal_line_sprite_board_sizeY.setColor(sf::Color::White);
+}
+void InGameSettings::boardSizeRefreshY()
+{
+	// sets the value of board size depending on the change
+	if (fboard_sizeY < min_board_size)
+		fboard_sizeY = min_board_size;
+	if (fboard_sizeY > max_board_size)
+		fboard_sizeY = max_board_size;
 }

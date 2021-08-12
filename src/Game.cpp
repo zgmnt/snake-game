@@ -63,7 +63,8 @@ Switcher Game::update(sf::RenderWindow* W)
 	gameSettingsResponse(W);
 
 	if (!bEndGame)
-		Algorithm::update(InGameSettings::getSnakeSpeed(), bEndGame, InGameSettings::getBoardSize());
+		Algorithm::update(InGameSettings::getSnakeSpeed(), bEndGame, 
+			InGameSettings::getBoardSizeX(), InGameSettings::getBoardSizeY());
 
 	if (bShowSettings)
 	{
