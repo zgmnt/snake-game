@@ -33,6 +33,7 @@ void Algorithm::update()
 	switchDirectionArrows();
 	selfEating();
 	snakeWalls();
+	eatFood();
 
 	// food generate
 	if (food_clock.getElapsedTime().asSeconds() > 3.5)
@@ -148,5 +149,39 @@ void Algorithm::drawFood(sf::RenderWindow* WINDOW)
 	{
 		food_set[z].setPosition(food_set[z].getX() * square_size + 50, food_set[z].getY() * square_size + 50);
 		WINDOW->draw(food_set[z].getFoodSprite());
+	}
+}
+void Algorithm::eatFood()
+{
+	size_t  i = food_set.size();
+	while (i--)
+	{
+		if (food_set[i].getX() == snake[0].x)
+		{
+			if (food_set[i].getY() == snake[0].y)
+			{
+				if (food_set[i].getFoodType() == FoodType::double_fruit)
+				{
+					length += 2;
+				}
+				else if (food_set[i].getFoodType() == FoodType::mushroom)
+				{
+					// end game
+				}
+				else if (food_set[i].getFoodType() == FoodType::poisoned)
+				{
+					if (length > min_lenght_self_eating)
+					{
+						length--;
+					}
+				}
+				else
+				{
+					length++;
+				}
+				food_set.erase(food_set.begin() + i);
+				break;
+			}
+		}
 	}
 }
