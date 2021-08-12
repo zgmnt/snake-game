@@ -1,5 +1,6 @@
 #include "InGameSettingsWindow.h"
 #include <Windows.h>
+#include <iostream>
 
 // public
 void InGameSettings::draw(sf::RenderWindow* WINDOW)

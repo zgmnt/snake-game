@@ -43,8 +43,20 @@ void Algorithm::load()
 	foodGenerator();
 	generateObstacle();
 }
-void Algorithm::update(float snake_speed)
+void Algorithm::update(float snake_speed, float fBOARD_SIZE)
 {
+	// change board size
+	if (Board::getBoardScale() != fBOARD_SIZE)
+	{
+		setBoardField(fBOARD_SIZE);
+		food_set.clear();
+		final_obstacles_coords.clear();
+		obstacles_coords.clear();
+		generateObstacle();
+		snake[0].x = 1;
+		snake[0].y = 1;
+	}
+
 	if ((1 / snake_speed) < snake_speed_clock.getElapsedTime().asSeconds() * 4)
 	{
 		snakeHeadMove();
@@ -132,7 +144,7 @@ void Algorithm::drawSnake(sf::RenderWindow* W)
 {
 	for (short k = length; k > 0; --k)
 	{
-		snake_body.setPosition(snake[k].x * square_size + 50, snake[k].y * square_size + 50);
+		snake_body.setPosition(snake[k].x * square_size + Board::getBoardPositionX(), snake[k].y * square_size + Board::getBoardPositionY());
 		W->draw(snake_body);
 	}
 	W->draw(getSnakeHeadSprite(snake[0].x, snake[0].y));
@@ -296,11 +308,29 @@ void Algorithm::drawObstacles(sf::RenderWindow* WINDOW)
 {
 	for (size_t n = 0; n < final_obstacles_coords.size(); n++)
 	{
-		rock_sprite.setPosition(final_obstacles_coords[n].x * square_size + 50, final_obstacles_coords[n].y * square_size + 50);
+		rock_sprite.setPosition(final_obstacles_coords[n].x * square_size 
+			+ Board::getBoardPositionX(), final_obstacles_coords[n].y * square_size + Board::getBoardPositionY());
 		WINDOW->draw(rock_sprite);
 	}
 }
 void Algorithm::scoreAlgorithm()
 {
 	score += length; // should be smarter
+}
+
+// board
+void Algorithm::setBoardFeatures(sf::Texture board_texture, sf::Sprite board_sprite)
+{
+	setBoardSize(board_texture);;
+}
+void Algorithm::setBoardSize(const sf::Texture& board_texture)
+{
+	board_texture_size_x = board_texture.getSize().x;
+	board_texture_size_y = board_texture.getSize().y;
+}
+void Algorithm::setBoardField(float BOARD_SIZE)
+{
+	Board::setBoardSize(BOARD_SIZE);
+	board_X_fields = int((board_texture_size_x * Board::getBoardScale()) / square_size);
+	board_Y_fields = int((board_texture_size_y * Board::getBoardScale()) / square_size);
 }

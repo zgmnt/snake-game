@@ -2,6 +2,8 @@
 #include "Food.h"
 #include "TimeCounter.h"
 #include "Scoreboard.h"
+#include "Board.h"
+
 
 enum class Direction
 {
@@ -22,7 +24,7 @@ struct FinalObstaclesCoords
 	short y = 5;
 };
 
-class Algorithm
+class Algorithm : public Board
 {
 	Direction direction;
 	TimeCounter counter;
@@ -99,6 +101,9 @@ class Algorithm
 	void drawCounter(sf::RenderWindow* W);
 	void drawScoreboard(sf::RenderWindow* W);
 	void scoreAlgorithm();
+	// board
+	void setBoardSize(const sf::Texture& board_texture);
+	void setBoardField(float BOARD_SIZE);
 public:
 	Algorithm(Direction dir, unsigned int&& snake_len)
 	{
@@ -108,6 +113,9 @@ public:
 	explicit Algorithm(unsigned int&& snake_len) : length(snake_len) {}
 	explicit Algorithm(Direction dir = Direction::right) : direction(dir) { }
 	void load();
-	void update(float snake_speed);
+	void update(float snake_speed, float fBOARD_SIZE);
 	void draw(sf::RenderWindow* W);
+	// board
+	void setBoardSize(float fBOARD_SIZE_X, float fBOARD_SIZE_Y);
+	void setBoardFeatures(sf::Texture board_texture, sf::Sprite board_sprite);
 };

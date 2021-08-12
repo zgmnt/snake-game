@@ -29,12 +29,13 @@ void Game::load(int& WIDTH, int& HEIGHT)
 
 Switcher Game::update(sf::RenderWindow* W)
 {
+	Algorithm::setBoardFeatures(Board::getTexture(), Board::getSprite());
+
 	gameSettingsResponse(W);
 
 	if (bShowSettings)
 		InGameSettings::update(W, bShowSettings);
-	else
-		Algorithm::update(InGameSettings::getSnakeSpeed());
+		Algorithm::update(InGameSettings::getSnakeSpeed(), InGameSettings::getBoardSize());
 
 	if (bBackToMenu)
 		return Switcher::menu;
@@ -58,6 +59,7 @@ void Game::draw(sf::RenderWindow* W)
 	W->draw(game_background_sprite);
 	W->draw(exit_sprite);
 	W->draw(game_settings_sprite);
+	W->draw(Board::getSprite());
 	Algorithm::draw(W);
 
 	if (bShowSettings)

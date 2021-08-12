@@ -10,7 +10,7 @@ class InGameSettings
 	sf::Text text_board_size;
 	int max_board_size{ 5 };
 	int min_board_size{ 2 };
-	float fboard_size{ 2 }; // init
+	float fboard_size{ 3 }; // init
 
 	// snake
 	sf::Text text_snake_speed_string;
