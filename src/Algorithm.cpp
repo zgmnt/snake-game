@@ -35,6 +35,11 @@ void Algorithm::load()
 	counter.setFontSize(30);
 	counter.setPosition(50, 94);
 
+	// scoreboard
+	scoreboard.setColor(sf::Color::Yellow);
+	scoreboard.setFontSize(45);
+	scoreboard.setPosition(80, 10);
+
 	foodGenerator();
 	generateObstacle();
 }
@@ -48,9 +53,12 @@ void Algorithm::update()
 	eatFood();
 	checkSnakeOnObstacles();
 
-
+	// scoreboard & counter
 	if (score_lenght_clock.getElapsedTime().asSeconds() > 1)
 	{
+		scoreboard.setScore(score);
+		scoreboard.setLenght(length);
+		scoreAlgorithm();
 		counter.timeUpdate();
 		score_lenght_clock.restart();
 	}
@@ -71,14 +79,22 @@ void Algorithm::draw(sf::RenderWindow* W)
 	drawFood(W);
 	drawObstacles(W);
 	drawCounter(W);
-	counter.timeTextUpdate();
+	drawScoreboard(W);
 }
 
 void  Algorithm::drawCounter(sf::RenderWindow* W)
 {
+	counter.timeTextUpdate();
 	W->draw(counter.getTextSeconds());
 	W->draw(counter.getTextMinutes());
 	W->draw(counter.getTextColon());
+}
+void  Algorithm::drawScoreboard(sf::RenderWindow* W)
+{
+	W->draw(scoreboard.getLenght());
+	W->draw(scoreboard.getScore());
+	W->draw(scoreboard.getScoreText());
+	W->draw(scoreboard.getSnakeLenghtText());
 }
 
 void Algorithm::switchDirectionArrows()
@@ -279,4 +295,8 @@ void Algorithm::drawObstacles(sf::RenderWindow* WINDOW)
 		rock_sprite.setPosition(final_obstacles_coords[n].x * square_size + 50, final_obstacles_coords[n].y * square_size + 50);
 		WINDOW->draw(rock_sprite);
 	}
+}
+void Algorithm::scoreAlgorithm()
+{
+	score += length; // should be smarter
 }

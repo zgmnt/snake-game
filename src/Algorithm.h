@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Food.h"
 #include "TimeCounter.h"
+#include "Scoreboard.h"
 
 enum class Direction
 {
@@ -25,6 +26,8 @@ class Algorithm
 {
 	Direction direction;
 	TimeCounter counter;
+	Scoreboard scoreboard;
+	int score = 0;
 
 	// snake body - single square
 	sf::RectangleShape snake_body;
@@ -93,6 +96,8 @@ class Algorithm
 	void checkSnakeOnObstacles();
 	void drawObstacles(sf::RenderWindow* WINDOW);
 	void drawCounter(sf::RenderWindow* W);
+	void drawScoreboard(sf::RenderWindow* W);
+	void scoreAlgorithm();
 public:
 	Algorithm(Direction dir, unsigned int&& snake_len)
 	{
