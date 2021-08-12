@@ -37,14 +37,6 @@ class InGameSettings
 	int nsize_back_to_game_button_x{ 241 };
 	int nsize_back_to_game_button_y{ 60 };
 
-	// fullscreen
-	bool isFullScreen{ false };
-	sf::Text text_switch_fullscreen;
-	sf::RectangleShape inner_fullscreen_button;
-	sf::RectangleShape outer_fullscreen_button;
-	int nsize_fullscreen_button_x = 250;
-	int nsize_fullscreen_button_y = 50;
-
 	// obstacles button
 	sf::RectangleShape inner_obstacles_button;
 	sf::RectangleShape outer_obstacles_button;
@@ -63,7 +55,6 @@ class InGameSettings
 	void boardSizeUpdate(const sf::RenderWindow* WINDOW);
 	void snakeSpeedUpdate(const sf::RenderWindow* WINDOW);
 	void backToGameButtonUpdate(const sf::RenderWindow* WINDOW, bool &bShowSettings);
-	void switchFullscreen(sf::RenderWindow* WINDOW);
 	void obstacleEnableUpdate(const sf::RenderWindow* WINDOW, bool& isObstaclesEnabled);
 public:
 	InGameSettings() {};

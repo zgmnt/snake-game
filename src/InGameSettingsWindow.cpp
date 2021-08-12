@@ -28,11 +28,6 @@ void InGameSettings::draw(sf::RenderWindow* WINDOW)
 	WINDOW->draw(horizontal_line_sprite_board_size);
 	WINDOW->draw(text_board_size);
 
-	// fullscreen button 
-	WINDOW->draw(outer_fullscreen_button);
-	WINDOW->draw(inner_fullscreen_button);
-	WINDOW->draw(text_switch_fullscreen);
-
 	// obstacles button
 	WINDOW->draw(outer_obstacles_button);
 	WINDOW->draw(inner_obstacles_button);
@@ -70,20 +65,6 @@ void InGameSettings::load(int WIDTH, int HEIGHT)
 	back_to_game_text.setCharacterSize(30);
 	back_to_game_text.setPosition(inner_back_to_game_button.getPosition().x + back_to_game_text.getCharacterSize() / 2, inner_back_to_game_button.getPosition().y + 8);
 	back_to_game_text.setFillColor(sf::Color::Blue);
-
-	// fullscreen
-	outer_fullscreen_button.setSize(sf::Vector2f(nsize_fullscreen_button_x, nsize_fullscreen_button_y));
-	outer_fullscreen_button.setFillColor(sf::Color(1, 1, 1, 255));
-	outer_fullscreen_button.setPosition(innerFrame.getPosition().x / 2 + 100, innerFrame.getPosition().y / 2 + 270);
-	outer_fullscreen_button.setOrigin(-10, -10);
-	inner_fullscreen_button.setSize(sf::Vector2f(nsize_fullscreen_button_x - 6, nsize_fullscreen_button_y - 6));
-	inner_fullscreen_button.setFillColor(sf::Color(211, 211, 211, 255));
-	inner_fullscreen_button.setPosition(outer_fullscreen_button.getPosition().x + 10, outer_fullscreen_button.getPosition().y + 10);
-	text_switch_fullscreen.setFont(font);
-	text_switch_fullscreen.setString("FULLSCREEN : OFF");
-	text_switch_fullscreen.setCharacterSize(25);
-	text_switch_fullscreen.setPosition(inner_fullscreen_button.getPosition().x + 55, inner_fullscreen_button.getPosition().y + 8);
-	text_switch_fullscreen.setFillColor(sf::Color::Red);
 
 	// board
 	text_board_size_string.setOutlineColor(sf::Color::Red);
@@ -166,7 +147,6 @@ void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool&
 	snakeSpeedUpdate(WINDOW);
 	snakeSpeedRefresh();
 	boardSizeRefresh();
-	switchFullscreen(WINDOW);
 	obstacleEnableUpdate(WINDOW, isObstaclesEnabled);
 }
 
@@ -186,40 +166,6 @@ void InGameSettings::backToGameButtonUpdate(const sf::RenderWindow* WINDOW, bool
 		inner_back_to_game_button.setOrigin(0, 0);
 		back_to_game_text.setOrigin(0, 0);
 	}
-}
-void InGameSettings::switchFullscreen(sf::RenderWindow* WINDOW)
-{
-	if (outer_fullscreen_button.getGlobalBounds().contains(WINDOW->mapPixelToCoords(sf::Mouse::getPosition(*WINDOW))))
-	{
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			if (isFullScreen)
-			{
-				WINDOW->create(sf::VideoMode(1250, 750), "Zygmunt Latyszewicz snake-game v1.7", sf::Style::Default);
-				isFullScreen = false;
-			}
-			else
-			{
-				WINDOW->create(sf::VideoMode(1250, 750), "Zygmunt Latyszewicz snake-game v1.7", sf::Style::Fullscreen);
-				isFullScreen = true;
-			}
-			WINDOW->setFramerateLimit(25);
-			Sleep(150);
-		}
-
-		inner_fullscreen_button.setOrigin(2, 2);
-		text_switch_fullscreen.setOrigin(2, 2);
-	}
-	else
-	{
-		inner_fullscreen_button.setOrigin(0, 0);
-		text_switch_fullscreen.setOrigin(0, 0);
-	}
-
-	if(isFullScreen)
-		text_switch_fullscreen.setString("FULLSCREEN : ON");
-	else
-		text_switch_fullscreen.setString("FULLSCREEN : OFF");
 }
 void InGameSettings::boardSizeUpdate(const sf::RenderWindow* WINDOW)
 {
