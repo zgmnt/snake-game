@@ -1,12 +1,10 @@
 #include <SFML/Graphics.hpp>
-
-
+#include "Food.h"
 
 enum class Direction
 {
 	down, left, right, up
 };
-
 
 class Algorithm
 {
@@ -25,6 +23,10 @@ class Algorithm
 	sf::Texture snake_down;
 	sf::Sprite snake_down_sprite;
 	sf::Sprite snake_current_head_sprite;
+
+	// food
+	std::vector<Food> food_set{};
+	short max_food_amount = 8;
 
 	unsigned short self_eating{ 4 };
 	static const int maxLenght{ 100 };
@@ -45,6 +47,8 @@ class Algorithm
 	int board_X_fields{ 43 };
 	int board_Y_fields{ 37 };
 
+	// clocks //
+	sf::Clock food_clock;
 
 	// private functions //
 	void switchDirectionArrows();
@@ -54,6 +58,8 @@ class Algorithm
 	void selfEating();
 	void snakeWalls();
 	sf::Sprite getSnakeHeadSprite(int offset_x, int offset_y);
+	void foodGenerator();
+	void drawFood(sf::RenderWindow* WINDOW);
 public:
 	Algorithm(Direction dir, unsigned int&& snake_len)
 	{

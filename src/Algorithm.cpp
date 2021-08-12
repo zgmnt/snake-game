@@ -23,6 +23,8 @@ void Algorithm::load()
 	snake_down_sprite = sf::Sprite(snake_down);
 	snake_down_sprite.setScale(0.25, 0.25);
 	snake_down_sprite.setOrigin(30.0, 0);
+
+	foodGenerator();
 }
 void Algorithm::update()
 {
@@ -31,10 +33,20 @@ void Algorithm::update()
 	switchDirectionArrows();
 	selfEating();
 	snakeWalls();
+
+	// food generate
+	if (food_clock.getElapsedTime().asSeconds() > 3.5)
+	{
+		if (food_set.size() < max_food_amount)
+			foodGenerator();
+
+		food_clock.restart();
+	}
 }
 void Algorithm::draw(sf::RenderWindow* W)
 {
 	drawSnake(W);
+	drawFood(W);
 }
 
 void Algorithm::switchDirectionArrows()
@@ -124,4 +136,17 @@ sf::Sprite Algorithm::getSnakeHeadSprite(int offset_x, int offset_y)
 	snake_current_head_sprite.setPosition(offset_x * square_size + 50, offset_y * square_size + 50);
 
 	return snake_current_head_sprite; // return to draw
+}
+void Algorithm::foodGenerator()
+{
+	Food* food = new Food(board_X_fields, board_Y_fields);
+	food_set.push_back(*food);
+}
+void Algorithm::drawFood(sf::RenderWindow* WINDOW)
+{
+	for (size_t z = 0; z < food_set.size(); z++)
+	{
+		food_set[z].setPosition(food_set[z].getX() * square_size + 50, food_set[z].getY() * square_size + 50);
+		WINDOW->draw(food_set[z].getFoodSprite());
+	}
 }
