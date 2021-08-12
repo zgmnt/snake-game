@@ -6,6 +6,20 @@ enum class Direction
 	down, left, right, up
 };
 
+struct ObstaclesCoords
+{
+	short x = 5;
+	short y = 5;
+	short extend_y = 5;
+	short extend_x = 5;
+};
+
+struct FinalObstaclesCoords
+{
+	short x = 5;
+	short y = 5;
+};
+
 class Algorithm
 {
 	Direction direction;
@@ -51,6 +65,16 @@ class Algorithm
 	// clocks //
 	sf::Clock food_clock;
 
+	// obstacles //
+	sf::Texture rock_texture;
+	sf::Sprite rock_sprite;
+
+	// obstacle coordinates //
+	std::vector<FinalObstaclesCoords> final_obstacles_coords{};
+	std::vector<ObstaclesCoords>  obstacles_coords = {};
+	// max obstacles
+	int obstacles_amount = 8;
+
 	// private functions //
 	void switchDirectionArrows();
 	void snakeHeadMove();
@@ -62,6 +86,9 @@ class Algorithm
 	void foodGenerator();
 	void drawFood(sf::RenderWindow* WINDOW);
 	void eatFood();
+	void generateObstacle();
+	void checkSnakeOnObstacles();
+	void drawObstacles(sf::RenderWindow* WINDOW);
 public:
 	Algorithm(Direction dir, unsigned int&& snake_len)
 	{

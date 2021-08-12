@@ -24,7 +24,14 @@ void Algorithm::load()
 	snake_down_sprite.setScale(0.25, 0.25);
 	snake_down_sprite.setOrigin(30.0, 0);
 
+	// rocks/obstacles
+	rock_texture.loadFromFile("img\\rock.png");
+	rock_sprite = sf::Sprite(rock_texture);
+	rock_sprite.setScale(0.18f, 0.18f);
+	rock_sprite.setOrigin(8, 8);
+
 	foodGenerator();
+	generateObstacle();
 }
 void Algorithm::update()
 {
@@ -34,6 +41,7 @@ void Algorithm::update()
 	selfEating();
 	snakeWalls();
 	eatFood();
+	checkSnakeOnObstacles();
 
 	// food generate
 	if (food_clock.getElapsedTime().asSeconds() > 3.5)
@@ -48,6 +56,7 @@ void Algorithm::draw(sf::RenderWindow* W)
 {
 	drawSnake(W);
 	drawFood(W);
+	drawObstacles(W);
 }
 
 void Algorithm::switchDirectionArrows()
@@ -183,5 +192,69 @@ void Algorithm::eatFood()
 				break;
 			}
 		}
+	}
+}
+void Algorithm::generateObstacle()
+{
+	int size = (rand() % obstacles_amount) + 5;
+	// create obstacles
+	for (int i = 0; i < size; i++)
+	{
+		ObstaclesCoords* ptr = new ObstaclesCoords;
+		ptr->x = rand() % board_X_fields;
+		ptr->y = rand() % board_Y_fields;
+		ptr->extend_x = (rand() % 10) - (rand() % 10);
+		ptr->extend_y = (rand() % 10) - (rand() % 10);
+		obstacles_coords.push_back(*ptr);
+	}
+	// extension obstalces
+	for (size_t n = 0; n < obstacles_coords.size(); n++)
+	{
+		for (int i = 0; i < abs(obstacles_coords[n].extend_x); i++)
+		{
+			FinalObstaclesCoords* ptr = new FinalObstaclesCoords;
+			if ((obstacles_coords[n].extend_x < 0) && (obstacles_coords[n].x - i > 0))
+				ptr->x = obstacles_coords[n].x - i;
+			else if (obstacles_coords[n].x + i < board_X_fields)
+				ptr->x = obstacles_coords[n].x + i;
+			ptr->y = obstacles_coords[n].y;
+			if ((ptr->x + i < board_X_fields) && (ptr->x + i > 0))
+				final_obstacles_coords.push_back(*ptr);
+		}
+
+		for (int i = 0; i < abs(obstacles_coords[n].extend_y); i++)
+		{
+			FinalObstaclesCoords* ptr = new FinalObstaclesCoords;
+			ptr->x = obstacles_coords[n].x;
+			if (obstacles_coords[n].extend_y < 0 && (obstacles_coords[n].y - i > 0))
+				ptr->y = obstacles_coords[n].y - i;
+			else if (obstacles_coords[n].y - i < board_Y_fields)
+				ptr->y = obstacles_coords[n].y + i;
+			if ((ptr->y + i < board_Y_fields) && (ptr->y + i > 0))
+				final_obstacles_coords.push_back(*ptr);
+		}
+	}
+}
+void Algorithm::checkSnakeOnObstacles()
+{
+	// whether snake head hit obstacle
+	for (size_t n = 0; n < final_obstacles_coords.size(); n++)
+	{
+		if (final_obstacles_coords[n].x == snake[0].x)
+		{
+			if (final_obstacles_coords[n].y == snake[0].y)
+			{
+				// end game
+				break;
+			}
+		}
+	}
+}
+void Algorithm::drawObstacles(sf::RenderWindow* WINDOW)
+{
+	for (size_t n = 0; n < final_obstacles_coords.size(); n++)
+	{
+		rock_sprite.setPosition(final_obstacles_coords[n].x * square_size + 50, final_obstacles_coords[n].y * square_size + 50);
+		WINDOW->draw(rock_sprite);
 	}
 }
