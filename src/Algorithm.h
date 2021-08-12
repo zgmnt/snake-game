@@ -70,6 +70,7 @@ class Algorithm
 	// clocks //
 	sf::Clock food_clock;
 	sf::Clock score_lenght_clock;
+	sf::Clock snake_speed_clock;
 
 	// obstacles //
 	sf::Texture rock_texture;
@@ -107,6 +108,6 @@ public:
 	explicit Algorithm(unsigned int&& snake_len) : length(snake_len) {}
 	explicit Algorithm(Direction dir = Direction::right) : direction(dir) { }
 	void load();
-	void update();
+	void update(float snake_speed);
 	void draw(sf::RenderWindow* W);
 };

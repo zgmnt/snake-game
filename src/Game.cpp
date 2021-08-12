@@ -40,7 +40,7 @@ Switcher Game::update(sf::RenderWindow* W)
 	if (bShowSettings)
 		InGameSettings::update(W, bShowSettings);
 	else
-		Algorithm::update();
+		Algorithm::update(InGameSettings::getSnakeSpeed());
 
 	if (bBackToMenu)
 		return Switcher::menu;

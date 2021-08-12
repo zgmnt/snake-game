@@ -43,15 +43,19 @@ void Algorithm::load()
 	foodGenerator();
 	generateObstacle();
 }
-void Algorithm::update()
+void Algorithm::update(float snake_speed)
 {
-	snakeHeadMove();
-	tailFollowHead();
-	switchDirectionArrows();
-	selfEating();
-	snakeWalls();
-	eatFood();
-	checkSnakeOnObstacles();
+	if ((1 / snake_speed) < snake_speed_clock.getElapsedTime().asSeconds() * 4)
+	{
+		snakeHeadMove();
+		tailFollowHead();
+		switchDirectionArrows();
+		selfEating();
+		snakeWalls();
+		eatFood();
+		checkSnakeOnObstacles();
+		snake_speed_clock.restart();
+	}
 
 	// scoreboard & counter
 	if (score_lenght_clock.getElapsedTime().asSeconds() > 1)
