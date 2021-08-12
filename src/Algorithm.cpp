@@ -5,6 +5,24 @@ void Algorithm::load()
 	// snake body
 	snake_body.setSize(sf::Vector2f(16, 16));
 	snake_body.setFillColor(sf::Color(160, 196, 50, 255));
+
+	// snake head
+	snake_right.loadFromFile("img\\snake_head_right.png");
+	snake_right_sprite = sf::Sprite(snake_right);
+	snake_right_sprite.setScale(0.25, 0.25);
+	snake_right_sprite.setOrigin(0, 30.0);
+	snake_left.loadFromFile("img\\snake_head_left.png");
+	snake_left_sprite = sf::Sprite(snake_left);
+	snake_left_sprite.setScale(0.25, 0.25);
+	snake_left_sprite.setOrigin(60.0, 30.0);
+	snake_up.loadFromFile("img\\snake_head_up.png");
+	snake_up_sprite = sf::Sprite(snake_up);
+	snake_up_sprite.setScale(0.25, 0.25);
+	snake_up_sprite.setOrigin(30.0, 60.0);
+	snake_down.loadFromFile("img\\snake_head_down.png");
+	snake_down_sprite = sf::Sprite(snake_down);
+	snake_down_sprite.setScale(0.25, 0.25);
+	snake_down_sprite.setOrigin(30.0, 0);
 }
 void Algorithm::update()
 {
@@ -53,6 +71,7 @@ void Algorithm::drawSnake(sf::RenderWindow* W)
 		snake_body.setPosition(snake[k].x * square_size + 50, snake[k].y * square_size + 50);
 		W->draw(snake_body);
 	}
+	W->draw(getSnakeHeadSprite(snake[0].x, snake[0].y));
 }
 void Algorithm::selfEating()
 {
@@ -83,4 +102,26 @@ void Algorithm::snakeWalls()
 
 	else if (snake[0].y == 0)
 		snake[0].y = board_Y_fields;
+}
+sf::Sprite Algorithm::getSnakeHeadSprite(int offset_x, int offset_y)
+{
+	// head moves according to direction
+	switch (direction)
+	{
+	case Direction::right:
+		snake_current_head_sprite = snake_right_sprite;
+		break;
+	case Direction::left:
+		snake_current_head_sprite = snake_left_sprite;
+		break;
+	case Direction::down:
+		snake_current_head_sprite = snake_down_sprite;
+		break;
+	case Direction::up:
+		snake_current_head_sprite = snake_up_sprite;
+		break;
+	}
+	snake_current_head_sprite.setPosition(offset_x * square_size + 50, offset_y * square_size + 50);
+
+	return snake_current_head_sprite; // return to draw
 }
