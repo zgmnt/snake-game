@@ -30,6 +30,11 @@ void Algorithm::load()
 	rock_sprite.setScale(0.18f, 0.18f);
 	rock_sprite.setOrigin(8, 8);
 
+	// counter
+	counter.setColor(sf::Color::Cyan);
+	counter.setFontSize(30);
+	counter.setPosition(50, 94);
+
 	foodGenerator();
 	generateObstacle();
 }
@@ -43,6 +48,13 @@ void Algorithm::update()
 	eatFood();
 	checkSnakeOnObstacles();
 
+
+	if (score_lenght_clock.getElapsedTime().asSeconds() > 1)
+	{
+		counter.timeUpdate();
+		score_lenght_clock.restart();
+	}
+
 	// food generate
 	if (food_clock.getElapsedTime().asSeconds() > 3.5)
 	{
@@ -54,9 +66,19 @@ void Algorithm::update()
 }
 void Algorithm::draw(sf::RenderWindow* W)
 {
+	
 	drawSnake(W);
 	drawFood(W);
 	drawObstacles(W);
+	drawCounter(W);
+	counter.timeTextUpdate();
+}
+
+void  Algorithm::drawCounter(sf::RenderWindow* W)
+{
+	W->draw(counter.getTextSeconds());
+	W->draw(counter.getTextMinutes());
+	W->draw(counter.getTextColon());
 }
 
 void Algorithm::switchDirectionArrows()
