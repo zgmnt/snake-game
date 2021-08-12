@@ -48,6 +48,13 @@ class InGameSettings
 	int nsize_obstacles_button_x{ 250 };
 	int nsize_obstacles_button_y{ 50 };
 
+	// control type button
+	sf::RectangleShape inner_control_type_button;
+	sf::RectangleShape outer_control_type_button;
+	sf::Text control_type_text;
+	int nsize_back_control_type_button_x = 310;
+	int nsize_back_control_type_button_y = 50;
+
 	// main window size
 	int outer_frame_size{ 500 };
 	int inner_frame_size{ 480 };
@@ -62,11 +69,12 @@ class InGameSettings
 	void snakeSpeedUpdate(const sf::RenderWindow* WINDOW);
 	void backToGameButtonUpdate(const sf::RenderWindow* WINDOW, bool &bShowSettings);
 	void obstacleEnableUpdate(const sf::RenderWindow* WINDOW, bool& isObstaclesEnabled);
+	void controlTypeUpdate(const sf::RenderWindow* WINDOW, bool& isArrowControlType);
 public:
 	InGameSettings() {};
 	~InGameSettings() {};
 	void draw(sf::RenderWindow* WINDOW);
-	void update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled);
+	void update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled, bool& isArrowControlType);
 	void load(int WIDTH, int HEIGHT);
 	float getSnakeSpeed() { return fsnake_speed; }
 	float getBoardSizeX() { return (fboard_sizeX / 10); }

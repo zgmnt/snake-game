@@ -91,7 +91,11 @@ void Algorithm::update(float snake_speed , bool& bEndGame, float fBOARD_SIZEX, f
 		food_clock.restart();
 	}
 
-
+	// controls type
+	if (bArrowsControlType)
+		switchDirectionArrows();
+	else
+		switchDirectionWSAD();
 }
 void Algorithm::draw(sf::RenderWindow* W)
 {
@@ -128,6 +132,18 @@ void Algorithm::switchDirectionArrows()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && direction != Direction::down)
 		direction = Direction::up;
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && direction != Direction::up)
+		direction = Direction::down;
+}
+void Algorithm::switchDirectionWSAD()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && direction != Direction::right)
+		direction = Direction::left;
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && direction != Direction::left)
+		direction = Direction::right;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && direction != Direction::down)
+		direction = Direction::up;
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && direction != Direction::up)
 		direction = Direction::down;
 }
 void Algorithm::tailFollowHead()

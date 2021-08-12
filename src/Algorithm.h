@@ -84,9 +84,11 @@ class Algorithm : public Board
 	int obstacles_amount = 8;
 
 	bool bObstaclesEnabled = false;
+	bool bArrowsControlType = true;
 
 	// private functions //
 	void switchDirectionArrows();
+	void switchDirectionWSAD();
 	void snakeHeadMove();
 	void tailFollowHead();
 	void drawSnake(sf::RenderWindow* W);
@@ -121,4 +123,5 @@ public:
 	void setBoardFeatures(sf::Texture board_texture, sf::Sprite board_sprite);
 	void restartGame();
 	bool& isObstaclesEnabled() { return bObstaclesEnabled; }
+	bool& isArrowControlType() { return bArrowsControlType; }
 };

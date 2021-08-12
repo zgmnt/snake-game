@@ -68,7 +68,7 @@ Switcher Game::update(sf::RenderWindow* W)
 
 	if (bShowSettings)
 	{
-		InGameSettings::update(W, bShowSettings, Algorithm::isObstaclesEnabled());
+		InGameSettings::update(W, bShowSettings, Algorithm::isObstaclesEnabled(), Algorithm::isArrowControlType());
 	}
 
 	if (bBackToMenu)

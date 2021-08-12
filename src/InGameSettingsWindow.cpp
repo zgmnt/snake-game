@@ -34,6 +34,11 @@ void InGameSettings::draw(sf::RenderWindow* WINDOW)
 	WINDOW->draw(outer_obstacles_button);
 	WINDOW->draw(inner_obstacles_button);
 	WINDOW->draw(obstacles_text);
+
+	// control type button
+	WINDOW->draw(outer_control_type_button);
+	WINDOW->draw(inner_control_type_button);
+	WINDOW->draw(control_type_text);
 }
 void InGameSettings::load(int WIDTH, int HEIGHT)
 {	
@@ -145,8 +150,24 @@ void InGameSettings::load(int WIDTH, int HEIGHT)
 	obstacles_text.setCharacterSize(25);
 	obstacles_text.setPosition(inner_obstacles_button.getPosition().x + 40, inner_obstacles_button.getPosition().y + 8);
 	obstacles_text.setFillColor(sf::Color::Red);
+
+	// control type button //
+	outer_control_type_button.setSize(sf::Vector2f(nsize_back_control_type_button_x, nsize_back_control_type_button_y));
+	outer_control_type_button.setFillColor(sf::Color(1, 1, 1, 255));
+	outer_control_type_button.setPosition(innerFrame.getPosition().x / 2 + 100, innerFrame.getPosition().y / 2 + 90);
+	outer_control_type_button.setOrigin(-10, -10);
+
+	inner_control_type_button.setSize(sf::Vector2f(nsize_back_control_type_button_x - 6, nsize_back_control_type_button_y - 6));
+	inner_control_type_button.setFillColor(sf::Color(211, 211, 211, 255));
+	inner_control_type_button.setPosition(outer_control_type_button.getPosition().x + 10, outer_control_type_button.getPosition().y + 10);
+
+	control_type_text.setFont(font);
+	control_type_text.setString("CONTROL TYPE : ARROWS");
+	control_type_text.setCharacterSize(25);
+	control_type_text.setPosition(inner_control_type_button.getPosition().x + 15, inner_control_type_button.getPosition().y + 8);
+	control_type_text.setFillColor(sf::Color::Red);
 }
-void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled)
+void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled, bool& isArrowControlType)
 {
 	backToGameButtonUpdate(WINDOW, bShowSettings);
 	snakeSpeedUpdate(WINDOW);
@@ -157,6 +178,7 @@ void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool&
 	boardSizeRefreshY();
 	boardSizeUpdateX(WINDOW);
 	boardSizeUpdateY(WINDOW);
+	controlTypeUpdate(WINDOW, isArrowControlType);
 }
 
 // private
@@ -276,4 +298,41 @@ void InGameSettings::boardSizeRefreshY()
 		fboard_sizeY = min_board_size;
 	if (fboard_sizeY > max_board_size)
 		fboard_sizeY = max_board_size;
+}
+void InGameSettings::controlTypeUpdate(const sf::RenderWindow* WINDOW, bool& isArrowControlType)
+{
+	if (isArrowControlType)
+	{
+		control_type_text.setString("CONTROL TYPE : ARROWS");
+	}
+	else
+	{
+		control_type_text.setString("CONTROL TYPE : WSAD");
+	}
+
+	if (outer_control_type_button.getGlobalBounds().contains((*WINDOW).mapPixelToCoords(sf::Mouse::getPosition(*WINDOW))))
+	{
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			Sleep(100);
+			if (!isArrowControlType)
+			{
+				isArrowControlType = true;
+			}
+			else
+			{
+				isArrowControlType = false;
+			}
+		}
+
+		inner_control_type_button.setOrigin(2, 2);
+		control_type_text.setOrigin(2, 2);
+
+	}
+	else
+	{
+
+		inner_control_type_button.setOrigin(0, 0);
+		control_type_text.setOrigin(0, 0);
+	}
 }
