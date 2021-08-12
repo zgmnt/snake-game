@@ -197,7 +197,7 @@ sf::Sprite Algorithm::getSnakeHeadSprite(int offset_x, int offset_y)
 		snake_current_head_sprite = snake_up_sprite;
 		break;
 	}
-	snake_current_head_sprite.setPosition(offset_x * square_size + 50, offset_y * square_size + 50);
+	snake_current_head_sprite.setPosition(offset_x * square_size + Board::getBoardPositionX(), offset_y * square_size + Board::getBoardPositionY());
 
 	return snake_current_head_sprite; // return to draw
 }
