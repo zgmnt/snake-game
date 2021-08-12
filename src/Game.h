@@ -4,6 +4,7 @@
 
 class Game : public Algorithm, InGameSettings
 {
+	sf::Font font;
 	// main game music
 	sf::Music game_music;
 
@@ -23,9 +24,21 @@ class Game : public Algorithm, InGameSettings
 	bool bEndGame{ false };
 	bool bShowSettings{ false };
 
+	// end game alert
+	sf::RectangleShape dark_effect;
+	sf::Text end_game_text;
+
+	// restart game button
+	sf::RectangleShape inner_restart_game_button;
+	sf::RectangleShape outer_restart_game_button;
+	sf::Text restart_game_text;
+	int nsize_restart_game_button_x{ 190 };
+	int nsize_restart_game_button_y{ 50 };
+
 	// private functions //
 	void exitIconResponse(const sf::RenderWindow* W);
 	void gameSettingsResponse(const sf::RenderWindow* W);
+	void drawEndGameAlert(sf::RenderWindow* WINDOW);
 
 public:
 	void draw(sf::RenderWindow* W);

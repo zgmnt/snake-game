@@ -49,6 +49,9 @@ class Algorithm : public Board
 	std::vector<Food> food_set{};
 	short max_food_amount{ 8 };
 
+	//init snake length
+	int length{ 8 };
+
 	unsigned short self_eating{ 4 };
 	static const int maxLenght{ 100 };
 	struct Snake
@@ -57,10 +60,6 @@ class Algorithm : public Board
 		unsigned short y;
 
 	}snake[maxLenght];
-
-	//init snake length
-	int length{ 8 };
-	const int min_lenght_self_eating{ 4 };
 
 	// board features
 	int square_size{ 16 };
@@ -118,4 +117,5 @@ public:
 	// board
 	void setBoardSize(float fBOARD_SIZE_X, float fBOARD_SIZE_Y);
 	void setBoardFeatures(sf::Texture board_texture, sf::Sprite board_sprite);
+	void restartGame();
 };

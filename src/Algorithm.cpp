@@ -233,7 +233,7 @@ void Algorithm::eatFood(bool& bEndGame)
 				}
 				else if (food_set[i].getFoodType() == FoodType::poisoned)
 				{
-					if (length > min_lenght_self_eating)
+					if (length > self_eating)
 					{
 						length--;
 					}
@@ -333,4 +333,16 @@ void Algorithm::setBoardField(float BOARD_SIZE)
 	Board::setBoardSize(BOARD_SIZE);
 	board_X_fields = int((board_texture_size_x * Board::getBoardScale()) / square_size);
 	board_Y_fields = int((board_texture_size_y * Board::getBoardScale()) / square_size);
+}
+void Algorithm::restartGame()
+{
+	score = 0;
+	counter.restart();
+	snake[0].x = 1;
+	snake[0].y = 1;
+	final_obstacles_coords.clear();
+	obstacles_coords.clear();
+	generateObstacle();
+	food_set.clear();
+	length = self_eating;
 }

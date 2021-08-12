@@ -3,6 +3,7 @@
 
 void Game::load(int& WIDTH, int& HEIGHT)
 {
+	font.loadFromFile("fonts\\mrsmonster.ttf");
 	Algorithm::load();
 
 	// background
@@ -26,11 +27,36 @@ void Game::load(int& WIDTH, int& HEIGHT)
 
 	// game settings window init
 	InGameSettings::load(WIDTH, HEIGHT);
+
+	// end game text
+	end_game_text.setFont(font);
+	end_game_text.setString("END GAME");
+	end_game_text.setCharacterSize(40);
+	end_game_text.setPosition(WIDTH / 2 - end_game_text.getCharacterSize() * 3, HEIGHT / 2 - end_game_text.getCharacterSize());
+	end_game_text.setFillColor(sf::Color::Yellow);
+	end_game_text.setOutlineColor(sf::Color::Green);
+	dark_effect.setSize(sf::Vector2f(1250, 750));
+	dark_effect.setFillColor(sf::Color(1, 1, 1, 155));
+
+	// restart game button //
+	outer_restart_game_button.setSize(sf::Vector2f(nsize_restart_game_button_x, nsize_restart_game_button_y));
+	outer_restart_game_button.setFillColor(sf::Color(1, 1, 1, 255));
+	outer_restart_game_button.setPosition(end_game_text.getPosition().x - 18, end_game_text.getPosition().y + 50);
+	outer_restart_game_button.setOrigin(-10, -10);
+
+	inner_restart_game_button.setSize(sf::Vector2f(nsize_restart_game_button_x - 6, nsize_restart_game_button_y - 6));
+	inner_restart_game_button.setFillColor(sf::Color(211, 211, 211, 255));
+	inner_restart_game_button.setPosition(outer_restart_game_button.getPosition().x + 10, outer_restart_game_button.getPosition().y + 10);
+
+	restart_game_text.setFont(font);
+	restart_game_text.setString("RESTART GAME");
+	restart_game_text.setCharacterSize(25);
+	restart_game_text.setPosition(inner_restart_game_button.getPosition().x + 15, inner_restart_game_button.getPosition().y + 8);
+	restart_game_text.setFillColor(sf::Color::Red);
 }
 
 Switcher Game::update(sf::RenderWindow* W)
 {
-	std::cout << bEndGame << std::endl;
 	exitIconResponse(W);
 	Algorithm::setBoardFeatures(Board::getTexture(), Board::getSprite());
 
@@ -66,7 +92,15 @@ void Game::draw(sf::RenderWindow* W)
 	Algorithm::draw(W);
 
 	if (bShowSettings)
+	{
+		W->draw(dark_effect);
 		InGameSettings::draw(W);
+	}
+
+	if (bEndGame)
+	{
+		drawEndGameAlert(W);
+	}
 }
 
 void Game::exitIconResponse(const sf::RenderWindow* W)
@@ -91,4 +125,31 @@ void Game::gameSettingsResponse(const sf::RenderWindow* W)
 		bShowSettings = true;
 	}
 
+}
+void Game::drawEndGameAlert(sf::RenderWindow* WINDOW)
+{
+	WINDOW->draw(dark_effect);
+	WINDOW->draw(end_game_text);
+	// restart_game button 
+	WINDOW->draw(outer_restart_game_button);
+	WINDOW->draw(inner_restart_game_button);
+	WINDOW->draw(restart_game_text);
+
+	if (outer_restart_game_button.getGlobalBounds().contains((*WINDOW).mapPixelToCoords(sf::Mouse::getPosition(*WINDOW))))
+	{
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			Sleep(100);
+			Algorithm::restartGame();
+			bEndGame = false;
+		}
+
+		inner_restart_game_button.setOrigin(2, 2);
+		restart_game_text.setOrigin(2, 2);
+	}
+	else
+	{
+		inner_restart_game_button.setOrigin(0, 0);
+		restart_game_text.setOrigin(0, 0);
+	}
 }
