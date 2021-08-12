@@ -83,6 +83,8 @@ class Algorithm : public Board
 	// max obstacles
 	int obstacles_amount = 8;
 
+	bool bObstaclesEnabled = false;
+
 	// private functions //
 	void switchDirectionArrows();
 	void snakeHeadMove();
@@ -118,4 +120,5 @@ public:
 	void setBoardSize(float fBOARD_SIZE_X, float fBOARD_SIZE_Y);
 	void setBoardFeatures(sf::Texture board_texture, sf::Sprite board_sprite);
 	void restartGame();
+	bool& isObstaclesEnabled() { return bObstaclesEnabled; }
 };

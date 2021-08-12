@@ -65,7 +65,10 @@ void Algorithm::update(float snake_speed , bool& bEndGame, float fBOARD_SIZE)
 		selfEating();
 		snakeWalls();
 		eatFood(bEndGame);
-		checkSnakeOnObstacles(bEndGame);
+
+		if (bObstaclesEnabled)
+			checkSnakeOnObstacles(bEndGame);
+
 		snake_speed_clock.restart();
 	}
 
@@ -87,15 +90,17 @@ void Algorithm::update(float snake_speed , bool& bEndGame, float fBOARD_SIZE)
 
 		food_clock.restart();
 	}
+
+
 }
 void Algorithm::draw(sf::RenderWindow* W)
 {
-	
 	drawSnake(W);
 	drawFood(W);
-	drawObstacles(W);
 	drawCounter(W);
 	drawScoreboard(W);
+	if (bObstaclesEnabled)
+		drawObstacles(W);
 }
 
 void  Algorithm::drawCounter(sf::RenderWindow* W)

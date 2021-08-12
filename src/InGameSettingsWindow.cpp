@@ -32,6 +32,11 @@ void InGameSettings::draw(sf::RenderWindow* WINDOW)
 	WINDOW->draw(outer_fullscreen_button);
 	WINDOW->draw(inner_fullscreen_button);
 	WINDOW->draw(text_switch_fullscreen);
+
+	// obstacles button
+	WINDOW->draw(outer_obstacles_button);
+	WINDOW->draw(inner_obstacles_button);
+	WINDOW->draw(obstacles_text);
 }
 void InGameSettings::load(int WIDTH, int HEIGHT)
 {	
@@ -139,8 +144,22 @@ void InGameSettings::load(int WIDTH, int HEIGHT)
 	text_board_size.setPosition(text_board_size_string.getPosition().x + 270, text_board_size_string.getPosition().y + 10);
 	text_board_size_string.setOrigin(0, -12);
 	text_snake_speed_string.setOrigin(0, -12);
+
+	// obstacles button //
+	outer_obstacles_button.setSize(sf::Vector2f(nsize_obstacles_button_x, nsize_obstacles_button_y));
+	outer_obstacles_button.setFillColor(sf::Color(1, 1, 1, 255));
+	outer_obstacles_button.setPosition(innerFrame.getPosition().x / 2 + 100, innerFrame.getPosition().y / 2 + 150);
+	outer_obstacles_button.setOrigin(-10, -10);
+	inner_obstacles_button.setSize(sf::Vector2f(nsize_obstacles_button_x - 6, nsize_obstacles_button_y - 6));
+	inner_obstacles_button.setFillColor(sf::Color(211, 211, 211, 255));
+	inner_obstacles_button.setPosition(outer_obstacles_button.getPosition().x + 10, outer_obstacles_button.getPosition().y + 10);
+	obstacles_text.setFont(font);
+	obstacles_text.setString("OBSTACLES : ON");
+	obstacles_text.setCharacterSize(25);
+	obstacles_text.setPosition(inner_obstacles_button.getPosition().x + 40, inner_obstacles_button.getPosition().y + 8);
+	obstacles_text.setFillColor(sf::Color::Red);
 }
-void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings)
+void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled)
 {
 	backToGameButtonUpdate(WINDOW, bShowSettings);
 	boardSizeUpdate(WINDOW);
@@ -148,6 +167,7 @@ void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings)
 	snakeSpeedRefresh();
 	boardSizeRefresh();
 	switchFullscreen(WINDOW);
+	obstacleEnableUpdate(WINDOW, isObstaclesEnabled);
 }
 
 // private
@@ -255,4 +275,30 @@ void InGameSettings::boardSizeRefresh()
 		text_board_size.setString(std::to_string(fboard_size).substr(0, 1));
 	else
 		text_board_size.setString(std::to_string(fboard_size).substr(0, 2));
+}
+void InGameSettings::obstacleEnableUpdate(const sf::RenderWindow* WINDOW, bool& isObstaclesEnabled)
+{
+	if (isObstaclesEnabled)
+		obstacles_text.setString("OBSTACLES : ON");
+	else
+		obstacles_text.setString("OBSTACLES : OFF");
+
+	if (outer_obstacles_button.getGlobalBounds().contains((*WINDOW).mapPixelToCoords(sf::Mouse::getPosition(*WINDOW))))
+	{
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			Sleep(150);
+			if (!isObstaclesEnabled)
+				isObstaclesEnabled = true;
+			else
+				isObstaclesEnabled = false;
+		}
+		inner_obstacles_button.setOrigin(2, 2);
+		obstacles_text.setOrigin(2, 2);
+	}
+	else
+	{
+		inner_obstacles_button.setOrigin(0, 0);
+		obstacles_text.setOrigin(0, 0);
+	}
 }

@@ -45,6 +45,13 @@ class InGameSettings
 	int nsize_fullscreen_button_x = 250;
 	int nsize_fullscreen_button_y = 50;
 
+	// obstacles button
+	sf::RectangleShape inner_obstacles_button;
+	sf::RectangleShape outer_obstacles_button;
+	sf::Text obstacles_text;
+	int nsize_obstacles_button_x{ 250 };
+	int nsize_obstacles_button_y{ 50 };
+
 	// main window size
 	int outer_frame_size{ 500 };
 	int inner_frame_size{ 480 };
@@ -57,12 +64,12 @@ class InGameSettings
 	void snakeSpeedUpdate(const sf::RenderWindow* WINDOW);
 	void backToGameButtonUpdate(const sf::RenderWindow* WINDOW, bool &bShowSettings);
 	void switchFullscreen(sf::RenderWindow* WINDOW);
-
+	void obstacleEnableUpdate(const sf::RenderWindow* WINDOW, bool& isObstaclesEnabled);
 public:
 	InGameSettings() {};
 	~InGameSettings() {};
 	void draw(sf::RenderWindow* WINDOW);
-	void update(sf::RenderWindow* WINDOW, bool& bShowSettings);
+	void update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled);
 	void load(int WIDTH, int HEIGHT);
 	float getSnakeSpeed() { return fsnake_speed; }
 	float getBoardSize() { return (fboard_size / 10); }
