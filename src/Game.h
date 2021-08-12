@@ -1,9 +1,8 @@
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
 #include "SetsSwitcher.h"
 #include "Algorithm.h"
+#include "InGameSettingsWindow.h"
 
-class Game : public Algorithm
+class Game : public Algorithm, InGameSettings
 {
 	// main game music
 	sf::Music game_music;
@@ -20,10 +19,16 @@ class Game : public Algorithm
 	sf::Texture exit_texture;
 	sf::Sprite exit_sprite;
 
+	// game settings icon
+	sf::Texture game_settings;
+	sf::Sprite game_settings_sprite;
+
 	bool bBackToMenu{ false };
+	bool bShowSettings{ false };
 
 	// private functions //
-	void doorIconResponse(const sf::RenderWindow* W);
+	void exitIconResponse(const sf::RenderWindow* W);
+	void gameSettingsResponse(const sf::RenderWindow* W);
 
 public:
 	void draw(sf::RenderWindow* W);

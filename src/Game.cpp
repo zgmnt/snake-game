@@ -22,12 +22,25 @@ void Game::load(int& WIDTH, int& HEIGHT)
 	board_sprite = sf::Sprite(board_texture);
 	board_sprite.setPosition(50, 50);
 	board_sprite.setScale(0.5, 0.5);
+
+	// game settings icon
+	game_settings.loadFromFile("img\\settings_icon_game.png");
+	game_settings_sprite = sf::Sprite(game_settings);
+	game_settings_sprite.setPosition(WIDTH * 0.44, HEIGHT * 0.945);
+	game_settings_sprite.setScale(0.065, 0.065);
+
+	// game settings window init
+	InGameSettings::load(WIDTH, HEIGHT);
 }
 
 Switcher Game::update(sf::RenderWindow* W)
 {
-	doorIconResponse(W);
-	Algorithm::update();
+	gameSettingsResponse(W);
+
+	if (bShowSettings)
+		InGameSettings::update(W, bShowSettings);
+	else
+		Algorithm::update();
 
 	if (bBackToMenu)
 		return Switcher::menu;
@@ -46,16 +59,19 @@ void Game::musicPlay()
 		game_music.play();
 }
 
-// private functions
 void Game::draw(sf::RenderWindow* W)
 {
 	W->draw(game_background_sprite);
 	W->draw(board_sprite);
 	W->draw(exit_sprite);
+	W->draw(game_settings_sprite);
 	Algorithm::draw(W);
+
+	if (bShowSettings)
+		InGameSettings::draw(W);
 }
 
-void Game::doorIconResponse(const sf::RenderWindow* W)
+void Game::exitIconResponse(const sf::RenderWindow* W)
 {
 	if (exit_sprite.getGlobalBounds().contains(W->mapPixelToCoords(sf::Mouse::getPosition(*W))))
 	{
@@ -68,4 +84,13 @@ void Game::doorIconResponse(const sf::RenderWindow* W)
 		bBackToMenu = false;
 		exit_sprite.setOrigin(-2.0, -2.0);
 	}
+}
+void Game::gameSettingsResponse(const sf::RenderWindow* W)
+{
+	if (game_settings_sprite.getGlobalBounds().contains(W->mapPixelToCoords(sf::Mouse::getPosition(*W)))
+		&& (sf::Mouse::isButtonPressed(sf::Mouse::Left)))
+	{
+		bShowSettings = true;
+	}
+
 }
