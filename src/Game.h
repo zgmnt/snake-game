@@ -3,11 +3,8 @@
 #include "SetsSwitcher.h"
 #include "Algorithm.h"
 
-// to do background of game and music
-
-class Game
+class Game : public Algorithm
 {
-	Algorithm algorithm{ Direction::down, 8 };
 	// main game music
 	sf::Music game_music;
 
