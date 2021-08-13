@@ -33,6 +33,11 @@ class Algorithm : public Board
 
 	// snake body - single square
 	sf::RectangleShape snake_body;
+	sf::Texture thick_snake_body_vertical_texture;
+	sf::Texture thick_snake_body_horizontal_texture;
+	sf::Sprite thick_snake_body_vertical_sprite;
+	sf::Sprite thick_snake_body_horizontal_sprite;
+	sf::Sprite final_thick_snake_body_sprite;
 
 	// snake head
 	sf::Texture snake_right;
@@ -104,6 +109,7 @@ class Algorithm : public Board
 	void drawCounter(sf::RenderWindow* W);
 	void drawScoreboard(sf::RenderWindow* W);
 	void scoreAlgorithm();
+	void thickSnakeBody();
 	// board
 	void setBoardSize(const sf::Texture& board_texture);
 	void setBoardField(float BOARD_SIZEX, float BOARD_SIZEY);

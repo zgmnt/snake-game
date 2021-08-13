@@ -5,6 +5,14 @@ void Algorithm::load()
 	// snake body
 	snake_body.setSize(sf::Vector2f(16, 16));
 	snake_body.setFillColor(sf::Color(160, 196, 50, 255));
+	thick_snake_body_vertical_texture.loadFromFile("img\\thic_snake_vertical.png");
+	thick_snake_body_vertical_sprite = sf::Sprite(thick_snake_body_vertical_texture);
+	thick_snake_body_horizontal_texture.loadFromFile("img\\thic_snake_horizontal.png");
+	thick_snake_body_horizontal_sprite = sf::Sprite(thick_snake_body_horizontal_texture);
+	thick_snake_body_horizontal_sprite.setOrigin(5, 0);
+	thick_snake_body_horizontal_sprite.setScale(0.85, 0.85);
+	thick_snake_body_vertical_sprite.setOrigin(0, 6);
+	thick_snake_body_vertical_sprite.setScale(0.85, 0.85);
 
 	// snake head
 	snake_right.loadFromFile("img\\snake_head_right.png");
@@ -169,6 +177,11 @@ void Algorithm::drawSnake(sf::RenderWindow* W)
 		W->draw(snake_body);
 	}
 	W->draw(getSnakeHeadSprite(snake[0].x, snake[0].y));
+
+	W->draw(final_thick_snake_body_sprite);
+	if ((final_thick_snake_body_sprite.getPosition().x == snake[length].x * square_size + Board::getBoardPositionX()) &&
+		(final_thick_snake_body_sprite.getPosition().y == snake[length].y * square_size + Board::getBoardPositionY()))
+		final_thick_snake_body_sprite.setColor((sf::Color(160, 196, 50, 0)));
 }
 void Algorithm::selfEating()
 {
@@ -244,6 +257,7 @@ void Algorithm::eatFood(bool& bEndGame)
 		{
 			if (food_set[i].getY() == snake[0].y)
 			{
+				thickSnakeBody();
 				if (food_set[i].getFoodType() == FoodType::double_fruit)
 				{
 					length += 2;
@@ -268,6 +282,16 @@ void Algorithm::eatFood(bool& bEndGame)
 			}
 		}
 	}
+}
+void Algorithm::thickSnakeBody()
+{
+	if (direction == Direction::right || direction == Direction::left)
+		final_thick_snake_body_sprite = sf::Sprite(thick_snake_body_vertical_sprite);
+	else
+		final_thick_snake_body_sprite = sf::Sprite(thick_snake_body_horizontal_sprite);
+
+	final_thick_snake_body_sprite.setPosition(snake[0].x * square_size 
+		+ Board::getBoardPositionX(), snake[0].y * square_size + Board::getBoardPositionY());
 }
 void Algorithm::generateObstacle()
 {
