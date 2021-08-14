@@ -1,10 +1,15 @@
 #include "Game.h"
-#include <iostream>
 
 void Game::load(int& WIDTH, int& HEIGHT)
-{
+{		
+	// rocks/obstacles
+	rock_texture.loadFromFile("img\\rock.png");
+	rock_sprite = sf::Sprite(rock_texture);
+	rock_sprite.setScale(0.18f, 0.18f);
+	rock_sprite.setOrigin(8, 8);
+
 	font.loadFromFile("fonts\\mrsmonster.ttf");
-	Algorithm::load();
+	Logic::load();
 
 	// background
 	game_background_texture.loadFromFile("img\\game_background.jpg");
@@ -17,12 +22,12 @@ void Game::load(int& WIDTH, int& HEIGHT)
 	// exit icon
 	exit_texture.loadFromFile("img\\exit.png");
 	exit_sprite = sf::Sprite(exit_texture);
-	exit_sprite.setPosition(WIDTH * 0.64, HEIGHT * 0.86);
+	exit_sprite.setPosition(WIDTH * 0.67, HEIGHT * 0.91);
 
 	// game settings icon
 	game_settings.loadFromFile("img\\settings_icon_game.png");
 	game_settings_sprite = sf::Sprite(game_settings);
-	game_settings_sprite.setPosition(WIDTH * 0.44, HEIGHT * 0.945);
+	game_settings_sprite.setPosition(WIDTH * 0.74, HEIGHT * 0.93);
 	game_settings_sprite.setScale(0.065, 0.065);
 
 	// game settings window init
@@ -58,22 +63,21 @@ void Game::load(int& WIDTH, int& HEIGHT)
 	game_music.openFromFile("audio\\game_music.ogg");
 	game_music.setLoop(true);
 }
-
 Switcher Game::update(sf::RenderWindow* W)
 {
 	exitIconResponse(W);
-	Algorithm::setBoardFeatures(Board::getTexture(), Board::getSprite());
+	Logic::setBoardFeatures(Board::getTexture(), Board::getSprite());
 
 	gameSettingsResponse(W);
 
 	if (!bEndGame)
-		Algorithm::update(InGameSettings::getSnakeSpeed(), bEndGame, 
+		Logic::update(InGameSettings::getSnakeSpeed(), bEndGame,
 			InGameSettings::getBoardSizeX(), InGameSettings::getBoardSizeY());
 
 	if (bShowSettings)
 	{
-		InGameSettings::update(W, bShowSettings, Algorithm::isObstaclesEnabled(),
-			Algorithm::isArrowControlType(), game_music, bEndGame);
+		InGameSettings::update(W, bShowSettings, Logic::isObstaclesEnabled(),
+			Logic::isArrowControlType(), game_music, bEndGame);
 	}
 
 	if (bBackToMenu)
@@ -99,7 +103,13 @@ void Game::draw(sf::RenderWindow* W)
 	W->draw(exit_sprite);
 	W->draw(game_settings_sprite);
 	W->draw(Board::getSprite());
-	Algorithm::draw(W);
+	Logic::drawSnake(W);
+	drawCounter(Logic::getCounterSprite(), W);
+	drawFood(Logic::getFoodSprite(), W);
+	drawScoreboard(Logic::getScoreboard(), W);
+
+	if (Logic::isObstaclesEnabled())
+		drawObstacles(Logic::getObstacles(), W);
 
 	if (bShowSettings)
 	{
@@ -151,7 +161,7 @@ void Game::drawEndGameAlert(sf::RenderWindow* WINDOW)
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			Sleep(100);
-			Algorithm::restartGame();
+			Logic::restartGame();
 			bEndGame = false;
 		}
 
@@ -162,5 +172,34 @@ void Game::drawEndGameAlert(sf::RenderWindow* WINDOW)
 	{
 		inner_restart_game_button.setOrigin(0, 0);
 		restart_game_text.setOrigin(0, 0);
+	}
+}
+void Game::drawCounter(std::vector<sf::Text> vec, sf::RenderWindow* W)
+{
+	for (auto it : vec)
+	{
+		W->draw(it);
+	}
+}
+void Game::drawFood(std::vector<Food> vec, sf::RenderWindow * W)
+{
+	for (size_t z = 0; z < Logic::getFoodSize(); z++)
+	{
+		W->draw(Logic::getFoodSprite(z));
+	}
+}
+void Game::drawScoreboard(std::vector<sf::Text> vec, sf::RenderWindow * W)
+{
+	for (auto it : vec)
+	{
+		W->draw(it);
+	}
+}
+void Game::drawObstacles(std::vector<FinalObstaclesCoords> vec, sf::RenderWindow * W)
+{
+	for (size_t n = 0; n < vec.size(); n++)
+	{
+		rock_sprite.setPosition(vec[n].x * 16 + 50, vec[n].y * 16 + 50);
+		W->draw(rock_sprite);
 	}
 }

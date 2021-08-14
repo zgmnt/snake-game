@@ -1,6 +1,6 @@
-#include "Algorithm.h"
+#include "Logic.h"
 
-void Algorithm::load()
+void Logic::load()
 {
 	// snake body
 	snake_body.setSize(sf::Vector2f(16, 16));
@@ -32,16 +32,10 @@ void Algorithm::load()
 	snake_down_sprite.setScale(0.25, 0.25);
 	snake_down_sprite.setOrigin(30.0, 0);
 
-	// rocks/obstacles
-	rock_texture.loadFromFile("img\\rock.png");
-	rock_sprite = sf::Sprite(rock_texture);
-	rock_sprite.setScale(0.18f, 0.18f);
-	rock_sprite.setOrigin(8, 8);
-
 	// counter
 	counter.setColor(sf::Color::Cyan);
 	counter.setFontSize(30);
-	counter.setPosition(50, 94);
+	counter.setPosition(82, 95);
 
 	// scoreboard
 	scoreboard.setColor(sf::Color::Yellow);
@@ -51,7 +45,7 @@ void Algorithm::load()
 	foodGenerator();
 	generateObstacle();
 }
-void Algorithm::update(float snake_speed , bool& bEndGame, float fBOARD_SIZEX, float fBOARD_SIZEY)
+void Logic::update(float snake_speed , bool& bEndGame, float fBOARD_SIZEX, float fBOARD_SIZEY)
 {
 	// change board size
 	if ((Board::getBoardScaleX() != fBOARD_SIZEX) || (Board::getBoardScaleY() != fBOARD_SIZEY))
@@ -105,71 +99,7 @@ void Algorithm::update(float snake_speed , bool& bEndGame, float fBOARD_SIZEX, f
 	else
 		switchDirectionWSAD();
 }
-void Algorithm::draw(sf::RenderWindow* W)
-{
-	drawSnake(W);
-	drawFood(W);
-	drawCounter(W);
-	drawScoreboard(W);
-	if (bObstaclesEnabled)
-		drawObstacles(W);
-}
-
-void  Algorithm::drawCounter(sf::RenderWindow* W)
-{
-	counter.timeTextUpdate();
-	W->draw(counter.getTextSeconds());
-	W->draw(counter.getTextMinutes());
-	W->draw(counter.getTextColon());
-}
-void  Algorithm::drawScoreboard(sf::RenderWindow* W)
-{
-	W->draw(scoreboard.getLenght());
-	W->draw(scoreboard.getScore());
-	W->draw(scoreboard.getScoreText());
-	W->draw(scoreboard.getSnakeLenghtText());
-}
-
-void Algorithm::switchDirectionArrows()
-{
-	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) && direction != Direction::right)
-		direction = Direction::left;
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && direction != Direction::left)
-		direction = Direction::right;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && direction != Direction::down)
-		direction = Direction::up;
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && direction != Direction::up)
-		direction = Direction::down;
-}
-void Algorithm::switchDirectionWSAD()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && direction != Direction::right)
-		direction = Direction::left;
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && direction != Direction::left)
-		direction = Direction::right;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && direction != Direction::down)
-		direction = Direction::up;
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && direction != Direction::up)
-		direction = Direction::down;
-}
-void Algorithm::tailFollowHead()
-{
-	for (int i = length; i > 0; --i)
-	{
-		snake[i].x = snake[i - 1].x;
-		snake[i].y = snake[i - 1].y;
-	}
-}
-void Algorithm::snakeHeadMove()
-{
-	if (direction == Direction::right) { snake[0].x++; }
-	else if (direction == Direction::left) { snake[0].x--; }
-	else if (direction == Direction::up) { snake[0].y--; }
-	else { snake[0].y++; }
-}
-void Algorithm::drawSnake(sf::RenderWindow* W)
+void Logic::drawSnake(sf::RenderWindow* W)
 {
 	for (short k = length; k > 0; --k)
 	{
@@ -183,7 +113,81 @@ void Algorithm::drawSnake(sf::RenderWindow* W)
 		(final_thick_snake_body_sprite.getPosition().y == snake[length].y * square_size + Board::getBoardPositionY()))
 		final_thick_snake_body_sprite.setColor((sf::Color(160, 196, 50, 0)));
 }
-void Algorithm::selfEating()
+
+// pass object's sprites outside
+std::vector<sf::Text> Logic::getCounterSprite()
+{
+	counter.timeTextUpdate();
+	std::vector<sf::Text> temp;
+	temp.push_back(counter.getTextSeconds());
+	temp.push_back(counter.getTextMinutes());
+	temp.push_back(counter.getTextColon());
+
+	return temp;
+}
+std::vector<Food> Logic::getFoodSprite()
+{
+	for (size_t z = 0; z < food_set.size(); z++)
+	{
+		food_set[z].setPosition(food_set[z].getX() * square_size + 50, food_set[z].getY() * square_size + 50);
+	}
+
+	return food_set;
+}
+std::vector<sf::Text>  Logic::getScoreboard()
+{
+	std::vector<sf::Text> temp;
+	temp.push_back(sf::Text(scoreboard.getLenght()));
+	temp.push_back(sf::Text(scoreboard.getScore()));
+	temp.push_back(scoreboard.getScoreText());
+	temp.push_back(scoreboard.getSnakeLenghtText());
+	return temp;
+}
+std::vector<FinalObstaclesCoords> Logic::getObstacles()
+{
+	return final_obstacles_coords;
+}
+
+void Logic::switchDirectionArrows()
+{
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) && direction != Direction::right)
+		direction = Direction::left;
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && direction != Direction::left)
+		direction = Direction::right;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && direction != Direction::down)
+		direction = Direction::up;
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && direction != Direction::up)
+		direction = Direction::down;
+}
+void Logic::switchDirectionWSAD()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && direction != Direction::right)
+		direction = Direction::left;
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && direction != Direction::left)
+		direction = Direction::right;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && direction != Direction::down)
+		direction = Direction::up;
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && direction != Direction::up)
+		direction = Direction::down;
+}
+void Logic::tailFollowHead()
+{
+	for (int i = length; i > 0; --i)
+	{
+		snake[i].x = snake[i - 1].x;
+		snake[i].y = snake[i - 1].y;
+	}
+}
+void Logic::snakeHeadMove()
+{
+	if (direction == Direction::right) { snake[0].x++; }
+	else if (direction == Direction::left) { snake[0].x--; }
+	else if (direction == Direction::up) { snake[0].y--; }
+	else { snake[0].y++; }
+}
+void Logic::selfEating()
 {
 	for (short i = self_eating; i < length; i++)
 	{
@@ -197,7 +201,7 @@ void Algorithm::selfEating()
 		}
 	}
 }
-void Algorithm::snakeWalls()
+void Logic::snakeWalls()
 {
 	// horizontal //
 	if (snake[0].x == board_X_fields)
@@ -213,7 +217,7 @@ void Algorithm::snakeWalls()
 	else if (snake[0].y == 0)
 		snake[0].y = board_Y_fields;
 }
-sf::Sprite Algorithm::getSnakeHeadSprite(int offset_x, int offset_y)
+sf::Sprite Logic::getSnakeHeadSprite(int offset_x, int offset_y)
 {
 	// head moves according to direction
 	switch (direction)
@@ -235,20 +239,12 @@ sf::Sprite Algorithm::getSnakeHeadSprite(int offset_x, int offset_y)
 
 	return snake_current_head_sprite; // return to draw
 }
-void Algorithm::foodGenerator()
+void Logic::foodGenerator()
 {
 	Food* food = new Food(board_X_fields, board_Y_fields);
 	food_set.push_back(*food);
 }
-void Algorithm::drawFood(sf::RenderWindow* WINDOW)
-{
-	for (size_t z = 0; z < food_set.size(); z++)
-	{
-		food_set[z].setPosition(food_set[z].getX() * square_size + 50, food_set[z].getY() * square_size + 50);
-		WINDOW->draw(food_set[z].getFoodSprite());
-	}
-}
-void Algorithm::eatFood(bool& bEndGame)
+void Logic::eatFood(bool& bEndGame)
 {
 	size_t  i = food_set.size();
 	while (i--)
@@ -283,7 +279,7 @@ void Algorithm::eatFood(bool& bEndGame)
 		}
 	}
 }
-void Algorithm::thickSnakeBody()
+void Logic::thickSnakeBody()
 {
 	if (direction == Direction::right || direction == Direction::left)
 		final_thick_snake_body_sprite = sf::Sprite(thick_snake_body_vertical_sprite);
@@ -293,7 +289,7 @@ void Algorithm::thickSnakeBody()
 	final_thick_snake_body_sprite.setPosition(snake[0].x * square_size 
 		+ Board::getBoardPositionX(), snake[0].y * square_size + Board::getBoardPositionY());
 }
-void Algorithm::generateObstacle()
+void Logic::generateObstacle()
 {
 	int size = (rand() % obstacles_amount) + 5;
 	// create obstacles
@@ -334,7 +330,7 @@ void Algorithm::generateObstacle()
 		}
 	}
 }
-void Algorithm::checkSnakeOnObstacles(bool& bEndGame)
+void Logic::checkSnakeOnObstacles(bool& bEndGame)
 {
 	// whether snake head hit obstacle
 	for (size_t n = 0; n < final_obstacles_coords.size(); n++)
@@ -349,37 +345,28 @@ void Algorithm::checkSnakeOnObstacles(bool& bEndGame)
 		}
 	}
 }
-void Algorithm::drawObstacles(sf::RenderWindow* WINDOW)
-{
-	for (size_t n = 0; n < final_obstacles_coords.size(); n++)
-	{
-		rock_sprite.setPosition(final_obstacles_coords[n].x * square_size 
-			+ Board::getBoardPositionX(), final_obstacles_coords[n].y * square_size + Board::getBoardPositionY());
-		WINDOW->draw(rock_sprite);
-	}
-}
-void Algorithm::scoreAlgorithm()
+void Logic::scoreAlgorithm()
 {
 	score += length; // should be smarter
 }
 
 // board
-void Algorithm::setBoardFeatures(sf::Texture board_texture, sf::Sprite board_sprite)
+void Logic::setBoardFeatures(sf::Texture board_texture, sf::Sprite board_sprite)
 {
 	setBoardSize(board_texture);;
 }
-void Algorithm::setBoardSize(const sf::Texture& board_texture)
+void Logic::setBoardSize(const sf::Texture& board_texture)
 {
 	board_texture_size_x = board_texture.getSize().x;
 	board_texture_size_y = board_texture.getSize().y;
 }
-void Algorithm::setBoardField(float BOARD_SIZEX, float BOARD_SIZEY)
+void Logic::setBoardField(float BOARD_SIZEX, float BOARD_SIZEY)
 {
 	Board::setBoardSize(BOARD_SIZEX, BOARD_SIZEY);
 	board_X_fields = int((board_texture_size_x * Board::getBoardScaleX()) / square_size);
 	board_Y_fields = int((board_texture_size_y * Board::getBoardScaleY()) / square_size);
 }
-void Algorithm::restartGame()
+void Logic::restartGame()
 {
 	score = 0;
 	counter.restart();

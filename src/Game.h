@@ -1,9 +1,12 @@
 #include "SetsSwitcher.h"
-#include "Algorithm.h"
+#include "Logic.h"
 #include "InGameSettingsWindow.h"
 
-class Game : public Algorithm, InGameSettings
+class Game : public Logic, InGameSettings
 {
+	// obstacles //
+	sf::Texture rock_texture;
+	sf::Sprite rock_sprite;
 	sf::Font font;
 	// main game music
 	sf::Music game_music;
@@ -39,6 +42,10 @@ class Game : public Algorithm, InGameSettings
 	void exitIconResponse(const sf::RenderWindow* W);
 	void gameSettingsResponse(const sf::RenderWindow* W);
 	void drawEndGameAlert(sf::RenderWindow* WINDOW);
+	void drawCounter(std::vector<sf::Text> vec, sf::RenderWindow* W);
+	void drawFood(std::vector<Food> vec, sf::RenderWindow* W);
+	void drawScoreboard(std::vector<sf::Text> vec, sf::RenderWindow* W);
+	void drawObstacles(std::vector<FinalObstaclesCoords> vec, sf::RenderWindow* W);
 
 public:
 	void draw(sf::RenderWindow* W);
