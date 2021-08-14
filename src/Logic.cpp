@@ -93,6 +93,15 @@ void Logic::update(float snake_speed , bool& bEndGame, float fBOARD_SIZEX, float
 		food_clock.restart();
 	}
 
+	// food erase
+	if (food_erase_time.getElapsedTime().asSeconds() > 5)
+	{
+		if (food_set.size() != 0)
+			foodErase();
+
+		food_erase_time.restart();
+	}
+
 	// controls type
 	if (bArrowsControlType)
 		switchDirectionArrows();
@@ -243,6 +252,12 @@ void Logic::foodGenerator()
 {
 	Food* food = new Food(board_X_fields, board_Y_fields);
 	food_set.push_back(*food);
+}
+void Logic::foodErase()
+{
+	int delete_food_position = short(rand() % food_set.size());
+	
+	food_set.erase(food_set.begin() + delete_food_position);
 }
 void Logic::eatFood(bool& bEndGame)
 {

@@ -77,6 +77,7 @@ class Logic : public Board
 
 	// clocks //
 	sf::Clock food_clock;
+	sf::Clock food_erase_time;
 	sf::Clock score_lenght_clock;
 	sf::Clock snake_speed_clock;
 	
@@ -98,6 +99,7 @@ class Logic : public Board
 	void snakeWalls();
 	sf::Sprite getSnakeHeadSprite(int offset_x, int offset_y);
 	void foodGenerator();
+	void foodErase();
 	void generateObstacle();
 	void checkSnakeOnObstacles(bool& bEndGame);
 	void scoreAlgorithm();
