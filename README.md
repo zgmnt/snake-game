@@ -9,7 +9,9 @@
 ## About
 
 The application is written in C++ and uses SFML as a graphics library.
-
+![sc1](img/sc1.png)
+![sc2](img/sc2.png)
+![sc3](img/sc3.png)
 ## Tools used
 * C++
 * Visual Studio
