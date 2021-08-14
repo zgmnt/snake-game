@@ -2,13 +2,19 @@
 
 void Sets::update(sf::RenderWindow* W)
 {
-	if (switcher == Switcher::menu)
+
+	if (switcher != Switcher::game)
 		background.update(W);
-	else if (switcher == Switcher::game)
+
+	switch (switcher)
 	{
+	case Switcher::menu:
+		switcher = menu.update(*W);
+		menu.draw(*W);
+		break;
+	case Switcher::game:
 		switcher = game.update(W);
 		game.draw(W);
-		//game.musicPlay();
 	}
 }
 
@@ -17,4 +23,5 @@ void Sets::load(int WIDTH, int HEIGHT)
 {
 	background.load();
 	game.load(WIDTH, HEIGHT);
+	menu.load(WIDTH, HEIGHT);
 }
