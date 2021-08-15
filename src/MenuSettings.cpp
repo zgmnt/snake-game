@@ -15,14 +15,14 @@ void Settings::load(int& WIDTH, int& HEIGHT)
 	//text_game_settings.setCharacterSize(50);
 	//text_game_settings.setPosition(WIDTH / 10, HEIGHT / 10);
 
-	//// text audio settings //
-	//text_audio_settings.setString("AUDIO SETTINGS");
-	//text_audio_settings.setFont(font);
-	//text_audio_settings.setOutlineColor(sf::Color::Green);
-	//text_audio_settings.setFillColor(sf::Color::Yellow);
-	//text_audio_settings.setOutlineThickness(2);
-	//text_audio_settings.setCharacterSize(50);
-	//text_audio_settings.setPosition(WIDTH / 10, HEIGHT / 10 + 70);
+	// text audio settings //
+	text_audio_settings.setString("AUDIO SETTINGS");
+	text_audio_settings.setFont(font);
+	text_audio_settings.setOutlineColor(sf::Color::Green);
+	text_audio_settings.setFillColor(sf::Color::Yellow);
+	text_audio_settings.setOutlineThickness(2);
+	text_audio_settings.setCharacterSize(50);
+	text_audio_settings.setPosition(WIDTH / 10, HEIGHT / 10 + 70);
 
 	// text back  //
 	text_back.setString("BACK");
@@ -54,20 +54,20 @@ Switcher  Settings::update(sf::RenderWindow& W)
 	//	text_game_settings.setOrigin(-5.0, -5.0);
 	//}
 
-	//// audio settings text response //
-	//if (text_audio_settings.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))))
-	//{
-	//	text_audio_settings.setCharacterSize(70);
-	//	text_audio_settings.setOrigin(8.0, 8.0);
+	// audio settings text response //
+	if (text_audio_settings.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))))
+	{
+		text_audio_settings.setCharacterSize(70);
+		text_audio_settings.setOrigin(8.0, 8.0);
 
-	//	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	//		return Switcher::audio_settings;
-	//}
-	//else
-	//{
-	//	text_audio_settings.setCharacterSize(50);
-	//	text_audio_settings.setOrigin(-5.0, -5.0);
-	//}
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			return Switcher::audio_settings;
+	}
+	else
+	{
+		text_audio_settings.setCharacterSize(50);
+		text_audio_settings.setOrigin(-5.0, -5.0);
+	}
 
 	// back text response //
 	if (text_back.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))))

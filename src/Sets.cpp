@@ -2,9 +2,10 @@
 
 void Sets::update(sf::RenderWindow* W)
 {
-
 	if (switcher != Switcher::game)
 		background.update(W);
+	else
+		menu_music.stop();
 
 	switch (switcher)
 	{
@@ -15,10 +16,15 @@ void Sets::update(sf::RenderWindow* W)
 	case Switcher::game:
 		switcher = game.update(W);
 		game.draw(W);
-	
+		break;
 	case Switcher::settings:
 		switcher = settings.update(*W);
 		settings.draw(*W);
+		break;
+	case Switcher::audio_settings:
+		switcher = audio_settings.update(*W, menu_music);
+		audio_settings.draw(*W);
+		break;
 	}
 }
 
@@ -29,4 +35,10 @@ void Sets::load(int WIDTH, int HEIGHT)
 	game.load(WIDTH, HEIGHT);
 	menu.load(WIDTH, HEIGHT);
 	settings.load(WIDTH, HEIGHT);
+	audio_settings.load(WIDTH, HEIGHT);
+
+	// menu music
+	menu_music.openFromFile("audio\\menu_music.ogg");
+	menu_music.setLoop(true);
+	menu_music.play();
 }

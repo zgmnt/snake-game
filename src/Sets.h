@@ -8,9 +8,12 @@
 class Sets
 {
 	Background background;
+	sf::Music menu_music;
+
 	Game game;
 	Menu menu;
 	Settings settings;
+	AudioSettings audio_settings;
 	Switcher switcher; // current set
 
 public:

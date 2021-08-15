@@ -2,5 +2,5 @@
 
 enum class Switcher
 {
-	menu, game, settings
+	menu, game, settings, audio_settings
 };

@@ -63,7 +63,7 @@ Switcher Menu::update(sf::RenderWindow& W)
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			Sleep(150);
+			Sleep(250);
 			return Switcher::settings;
 		}
 	}
