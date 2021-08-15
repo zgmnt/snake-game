@@ -2,12 +2,14 @@
 #include "SetsSwitcher.h"
 #include "Game.h"
 #include "Menu.h"
+#include "MenuSettings.h"
 
 class Sets
 {
 	Background background;
 	Game game;
 	Menu menu;
+	Settings settings;
 	Switcher switcher; // current set
 
 public:
