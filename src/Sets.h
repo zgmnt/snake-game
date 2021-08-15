@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Menu.h"
 #include "MenuSettings.h"
+#include "AudioSettings.h"
 
 class Sets
 {
