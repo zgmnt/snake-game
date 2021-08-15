@@ -15,6 +15,10 @@ void Sets::update(sf::RenderWindow* W)
 	case Switcher::game:
 		switcher = game.update(W);
 		game.draw(W);
+	
+	case Switcher::settings:
+		switcher = settings.update(*W);
+		settings.draw(*W);
 	}
 }
 
@@ -24,4 +28,5 @@ void Sets::load(int WIDTH, int HEIGHT)
 	background.load();
 	game.load(WIDTH, HEIGHT);
 	menu.load(WIDTH, HEIGHT);
+	settings.load(WIDTH, HEIGHT);
 }
