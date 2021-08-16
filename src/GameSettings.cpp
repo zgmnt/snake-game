@@ -62,7 +62,7 @@ void GameSettings::load(int& WIDTH, int& HEIGHT)
 
 	// text constrol
 	text_control_WSAD.setFont(font);
-	text_control_WSAD.setString("CONTROL TYPE WSAD ");
+	text_control_WSAD.setString("CONTROL TYPE ARROWS ");
 	text_control_WSAD.setOutlineColor(sf::Color::Red);
 	text_control_WSAD.setFillColor(sf::Color::Yellow);
 	text_control_WSAD.setOutlineThickness(2);
@@ -163,4 +163,5 @@ void GameSettings::getConfigData()
 		else if (temp == "F") { temp = "OFF"; }
 		it->setString(it->getString() + temp);
 	}
+	file.close();
 }
