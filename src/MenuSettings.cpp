@@ -6,14 +6,14 @@ void Settings::load(int& WIDTH, int& HEIGHT)
 {
 	font.loadFromFile("fonts\\mrsmonster.ttf");
 
-	//// text game settings //
-	//text_game_settings.setString("GAME SETTINGS");
-	//text_game_settings.setFont(font);
-	//text_game_settings.setOutlineColor(sf::Color::Green);
-	//text_game_settings.setFillColor(sf::Color::Yellow);
-	//text_game_settings.setOutlineThickness(2);
-	//text_game_settings.setCharacterSize(50);
-	//text_game_settings.setPosition(WIDTH / 10, HEIGHT / 10);
+	// text game settings //
+	text_game_settings.setString("GAME SETTINGS");
+	text_game_settings.setFont(font);
+	text_game_settings.setOutlineColor(sf::Color::Green);
+	text_game_settings.setFillColor(sf::Color::Yellow);
+	text_game_settings.setOutlineThickness(2);
+	text_game_settings.setCharacterSize(50);
+	text_game_settings.setPosition(WIDTH / 10, HEIGHT / 10);
 
 	// text audio settings //
 	text_audio_settings.setString("AUDIO SETTINGS");
@@ -35,24 +35,24 @@ void Settings::load(int& WIDTH, int& HEIGHT)
 }
 Switcher  Settings::update(sf::RenderWindow& W)
 {
-	//// game settings text response //
-	//if (text_game_settings.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))))
-	//{
-	//	text_game_settings.setCharacterSize(70);
-	//	text_game_settings.setOrigin(8.0, 8.0);
+	// game settings text response //
+	if (text_game_settings.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))))
+	{
+		text_game_settings.setCharacterSize(70);
+		text_game_settings.setOrigin(8.0, 8.0);
 
-	//	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	//	{
-	//		Sleep(100);
-	//		return Switcher::game_settings;
-	//	}
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			Sleep(100);
+			return Switcher::game_settings;
+		}
 
-	//}
-	//else
-	//{
-	//	text_game_settings.setCharacterSize(50);
-	//	text_game_settings.setOrigin(-5.0, -5.0);
-	//}
+	}
+	else
+	{
+		text_game_settings.setCharacterSize(50);
+		text_game_settings.setOrigin(-5.0, -5.0);
+	}
 
 	// audio settings text response //
 	if (text_audio_settings.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))))
