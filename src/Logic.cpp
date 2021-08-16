@@ -105,7 +105,7 @@ void Logic::update(float snake_speed , bool& bEndGame, float fBOARD_SIZEX, float
 	// controls type
 	if (bArrowsControlType)
 		switchDirectionArrows();
-	else
+	else if(!bArrowsControlType)
 		switchDirectionWSAD();
 }
 void Logic::drawSnake(sf::RenderWindow* W)

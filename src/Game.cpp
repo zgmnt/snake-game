@@ -31,7 +31,8 @@ void Game::load(int& WIDTH, int& HEIGHT)
 	game_settings_sprite.setScale(0.065, 0.065);
 
 	// game settings window init
-	InGameSettings::load(WIDTH, HEIGHT);
+	InGameSettings::load(WIDTH, HEIGHT,Logic::isObstaclesEnabled(),
+		Logic::isArrowControlType());
 
 	// end game text
 	end_game_text.setFont(font);

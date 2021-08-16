@@ -1,6 +1,7 @@
 #include "InGameSettingsWindow.h"
 #include <Windows.h>
 #include <iostream>
+#include <fstream>
 
 // public
 void InGameSettings::draw(sf::RenderWindow* WINDOW)
@@ -46,8 +47,9 @@ void InGameSettings::draw(sf::RenderWindow* WINDOW)
 	WINDOW->draw(music_text);
 
 }
-void InGameSettings::load(int WIDTH, int HEIGHT)
-{	
+void InGameSettings::load(int WIDTH, int HEIGHT,bool& isObstaclesEnabled, bool& isArrowControlType)
+{
+	getConfigData(isObstaclesEnabled, isArrowControlType);
 	// font
 	font.loadFromFile("fonts\\mrsmonster.ttf");
 	text_snake_speed.setFont(font);
@@ -391,4 +393,39 @@ void InGameSettings::musicEnableUpdate(const sf::RenderWindow* WINDOW, sf::Music
 		inner_music_button.setOrigin(0, 0);
 		music_text.setOrigin(0, 0);
 	}
+}
+void InGameSettings::getConfigData(bool& isObstaclesEnabled, bool& isArrowControlType)
+{
+	std::vector<float*> values
+	{
+		&fboard_sizeX,
+		& fboard_sizeY,
+		& fsnake_speed,
+	};
+
+	std::vector<bool*> config
+	{
+		&isObstaclesEnabled,
+		&isArrowControlType,
+	};
+
+	std::fstream file;
+	file.open("game_config.txt");
+	std::string temp;
+
+	for (auto it : values)
+	{
+		file >> temp;
+		temp = temp.substr(temp.size() - 1, temp.size());
+		*it = std::stoi(temp);
+	}
+	for (auto it : config)
+	{
+		file >> temp;
+
+		temp = temp.substr(temp.size() - 1, temp.size());
+		if (temp == "N") { *it = true; }
+		else if (temp == "F") { *it = false; }
+	}
+	file.close();
 }

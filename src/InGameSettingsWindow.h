@@ -78,6 +78,7 @@ class InGameSettings
 	void obstacleEnableUpdate(const sf::RenderWindow* WINDOW, bool& isObstaclesEnabled);
 	void controlTypeUpdate(const sf::RenderWindow* WINDOW, bool& isArrowControlType);
 	void musicEnableUpdate(const sf::RenderWindow* WINDOW, sf::Music& isMusicPlaying);
+	void getConfigData(bool& isObstaclesEnabled, bool& isArrowControlType);
 
 public:
 	InGameSettings() {};
@@ -85,7 +86,7 @@ public:
 	void draw(sf::RenderWindow* WINDOW);
 	void update(sf::RenderWindow* WINDOW, bool& bShowSettings,bool& isObstaclesEnabled, 
 		bool& isArrowControlType, sf::Music& isMusicPlaying, bool& bEndGame);
-	void load(int WIDTH, int HEIGHT);
+	void load(int WIDTH, int HEIGHT, bool& isObstaclesEnabled, bool& isArrowControlType);
 	float getSnakeSpeed() { return fsnake_speed; }
 	float getBoardSizeX() { return (fboard_sizeX / 10); }
 	float getBoardSizeY() { return (fboard_sizeY / 10); }
