@@ -4,6 +4,7 @@
 #include "Menu.h"
 #include "MenuSettings.h"
 #include "AudioSettings.h"
+#include "GameSettings.h"
 
 class Sets
 {
@@ -14,6 +15,7 @@ class Sets
 	Menu menu;
 	Settings settings;
 	AudioSettings audio_settings;
+	GameSettings game_settings;
 	Switcher switcher; // current set
 
 public:

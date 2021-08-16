@@ -25,6 +25,10 @@ void Sets::update(sf::RenderWindow* W)
 		switcher = audio_settings.update(*W, menu_music);
 		audio_settings.draw(*W);
 		break;
+	case Switcher::game_settings:
+		switcher = game_settings.update(*W);
+		game_settings.draw(*W);
+		break;
 	}
 }
 
@@ -36,6 +40,7 @@ void Sets::load(int WIDTH, int HEIGHT)
 	menu.load(WIDTH, HEIGHT);
 	settings.load(WIDTH, HEIGHT);
 	audio_settings.load(WIDTH, HEIGHT);
+	game_settings.load(WIDTH, HEIGHT);
 
 	// menu music
 	menu_music.openFromFile("audio\\menu_music.ogg");
