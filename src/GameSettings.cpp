@@ -1,7 +1,7 @@
 #include "GameSettings.h"
 #include <Windows.h>
 #include <fstream>
-void GameSettings::load(int& WIDTH, int& HEIGHT)
+void GameSettings::load(int WIDTH, int HEIGHT)
 {
 	font.loadFromFile("fonts\\mrsmonster.ttf");
 	
@@ -90,23 +90,23 @@ void GameSettings::load(int& WIDTH, int& HEIGHT)
 	getConfigData();
 }
 
-void GameSettings::draw(sf::RenderWindow& W)
+void GameSettings::draw(sf::RenderWindow* W)
 {
-	W.draw(text_back);
-	W.draw(text_default);
-	W.draw(text_board_sizeX);
-	W.draw(text_board_sizeY);
-	W.draw(text_snake_speed);
-	W.draw(text_screen_resolution);
-	W.draw(text_obstacles);
-	W.draw(text_music);
-	W.draw(text_control_WSAD);
+	W->draw(text_back);
+	W->draw(text_default);
+	W->draw(text_board_sizeX);
+	W->draw(text_board_sizeY);
+	W->draw(text_snake_speed);
+	W->draw(text_screen_resolution);
+	W->draw(text_obstacles);
+	W->draw(text_music);
+	W->draw(text_control_WSAD);
 
 }
-Switcher GameSettings::update(sf::RenderWindow& W)
+Switcher GameSettings::update(sf::RenderWindow* W)
 {
 	// back tekst response //
-	if (text_back.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))))
+	if (text_back.getGlobalBounds().contains(W->mapPixelToCoords(sf::Mouse::getPosition(*W))))
 	{
 		text_back.setCharacterSize(70);
 		text_back.setOrigin(8.0, 8.0);

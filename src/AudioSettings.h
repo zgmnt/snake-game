@@ -28,13 +28,13 @@ class AudioSettings
 
 
 	// private functions //
-	void soundIconUpdate(sf::RenderWindow& W, sf::Music& background_music);
-	void musicVolumeChange(sf::Music& background_music, sf::RenderWindow& W);
+	void soundIconUpdate(sf::RenderWindow* W, sf::Music& background_music);
+	void musicVolumeChange(sf::Music& background_music, sf::RenderWindow* W);
 	void numberVolumeLevelUpdate(sf::Music& background_music);
 
 public:
-	void draw(sf::RenderWindow& W);
-	void load(int& WIDTH, int& HEIGHT);
-	Switcher update(sf::RenderWindow& W, sf::Music& background_music);
+	void draw(sf::RenderWindow* W);
+	void load(int WIDTH, int HEIGHT);
+	Switcher update(sf::RenderWindow* W, sf::Music& background_music);
 	bool isMusicMuted() { return current_sound_icon_sprite.getColor() == sf::Color::Red; }
 };

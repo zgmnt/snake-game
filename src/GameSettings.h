@@ -30,7 +30,7 @@ class GameSettings
 	void getConfigData();
 
 public:
-	void load(int& WIDTH, int& HEIGHT);
-	Switcher update(sf::RenderWindow& W);
-	void draw(sf::RenderWindow& W);
+	void load(int WIDTH, int HEIGHT);
+	Switcher update(sf::RenderWindow* W);
+	void draw(sf::RenderWindow* W);
 };

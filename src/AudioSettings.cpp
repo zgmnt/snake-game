@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include "AudioSettings.h"
 
-void AudioSettings::load(int& WIDTH, int& HEIGHT)
+void AudioSettings::load(int WIDTH, int HEIGHT)
 {
 	font.loadFromFile("fonts\\mrsmonster.ttf");
 
@@ -58,14 +58,14 @@ void AudioSettings::load(int& WIDTH, int& HEIGHT)
 	horizontal_line_sprite.setColor(sf::Color::White);
 }
 
-Switcher AudioSettings::update(sf::RenderWindow& W, sf::Music& background_music)
+Switcher AudioSettings::update(sf::RenderWindow* W, sf::Music& background_music)
 {
 	soundIconUpdate(W, background_music);
 	musicVolumeChange(background_music, W);
 	numberVolumeLevelUpdate(background_music);
 
 	// back tekst response //
-	if (text_back.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))))
+	if (text_back.getGlobalBounds().contains(W->mapPixelToCoords(sf::Mouse::getPosition(*W))))
 	{
 		text_back.setCharacterSize(70);
 		text_back.setOrigin(8.0, 8.0);
@@ -84,20 +84,20 @@ Switcher AudioSettings::update(sf::RenderWindow& W, sf::Music& background_music)
 
 	return Switcher::audio_settings;
 }
-void AudioSettings::draw(sf::RenderWindow& W)
+void AudioSettings::draw(sf::RenderWindow* W)
 {
 	// texts
-	W.draw(text_volume);
-	W.draw(text_back);
-	W.draw(text_volume_number);
+	W->draw(text_volume);
+	W->draw(text_back);
+	W->draw(text_volume_number);
 
 	// sprites
-	W.draw(volume_up_sprite);
-	W.draw(volume_down_sprite);
-	W.draw(current_sound_icon_sprite);
-	W.draw(horizontal_line_sprite);
+	W->draw(volume_up_sprite);
+	W->draw(volume_down_sprite);
+	W->draw(current_sound_icon_sprite);
+	W->draw(horizontal_line_sprite);
 }
-void AudioSettings::soundIconUpdate(sf::RenderWindow& W, sf::Music& background_music)
+void AudioSettings::soundIconUpdate(sf::RenderWindow* W, sf::Music& background_music)
 {
 	// sound icon depends on music on/off //
 	if (background_music.getStatus() == 2)
@@ -115,7 +115,7 @@ void AudioSettings::soundIconUpdate(sf::RenderWindow& W, sf::Music& background_m
 	current_sound_icon_sprite.setPosition(text_volume_number.getPosition().x + 100, text_volume_number.getPosition().y - 20);
 
 	// change sound on/off //
-	if (current_sound_icon_sprite.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (current_sound_icon_sprite.getGlobalBounds().contains(W->mapPixelToCoords(sf::Mouse::getPosition(*W))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		Sleep(300);
 		if (background_music.getStatus() == 2)
@@ -124,15 +124,15 @@ void AudioSettings::soundIconUpdate(sf::RenderWindow& W, sf::Music& background_m
 			background_music.play();
 	}
 }
-void AudioSettings::musicVolumeChange(sf::Music& background_music, sf::RenderWindow& W)
+void AudioSettings::musicVolumeChange(sf::Music& background_music, sf::RenderWindow* W)
 {
-	if (volume_up_sprite.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (volume_up_sprite.getGlobalBounds().contains(W->mapPixelToCoords(sf::Mouse::getPosition(*W))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		horizontal_line_sprite.setColor(sf::Color::Green);
 		if (background_music.getVolume() < 100)
 			background_music.setVolume(background_music.getVolume() + 1);
 	}
-	else if (volume_down_sprite.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	else if (volume_down_sprite.getGlobalBounds().contains(W->mapPixelToCoords(sf::Mouse::getPosition(*W))) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		horizontal_line_sprite.setColor(sf::Color::Red);
 		if (background_music.getVolume() > 1)

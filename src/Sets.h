@@ -1,5 +1,4 @@
 #include "Background.h"
-#include "SetsSwitcher.h"
 #include "Game.h"
 #include "Menu.h"
 #include "MenuSettings.h"
@@ -19,7 +18,6 @@ class Sets
 	Switcher switcher; // current set
 
 public:
-	Sets() {}
 	Sets(Switcher set = Switcher::menu) : switcher(set) {}
 	~Sets() {}
 	void load(int WIDTH, int HEIGHT);

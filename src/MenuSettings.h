@@ -10,7 +10,7 @@ class Settings
 	sf::Text text_back;
 
 public:
-	void draw(sf::RenderWindow& W);
-	void load(int& WIDTH, int& HEIGHT);
-	Switcher update(sf::RenderWindow& W);
+	void draw(sf::RenderWindow* W);
+	void load(int WIDTH, int HEIGHT);
+	Switcher update(sf::RenderWindow* W);
 };

@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include "MenuSettings.h"
 
-void Settings::load(int& WIDTH, int& HEIGHT)
+void Settings::load(int WIDTH, int HEIGHT)
 {
 	font.loadFromFile("fonts\\mrsmonster.ttf");
 
@@ -33,10 +33,10 @@ void Settings::load(int& WIDTH, int& HEIGHT)
 	text_back.setCharacterSize(50);
 	text_back.setPosition(WIDTH / 10, HEIGHT / 10 + 350);
 }
-Switcher  Settings::update(sf::RenderWindow& W)
+Switcher  Settings::update(sf::RenderWindow* W)
 {
 	// game settings text response //
-	if (text_game_settings.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))))
+	if (text_game_settings.getGlobalBounds().contains(W->mapPixelToCoords(sf::Mouse::getPosition(*W))))
 	{
 		text_game_settings.setCharacterSize(70);
 		text_game_settings.setOrigin(8.0, 8.0);
@@ -55,7 +55,7 @@ Switcher  Settings::update(sf::RenderWindow& W)
 	}
 
 	// audio settings text response //
-	if (text_audio_settings.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))))
+	if (text_audio_settings.getGlobalBounds().contains(W->mapPixelToCoords(sf::Mouse::getPosition(*W))))
 	{
 		text_audio_settings.setCharacterSize(70);
 		text_audio_settings.setOrigin(8.0, 8.0);
@@ -70,7 +70,7 @@ Switcher  Settings::update(sf::RenderWindow& W)
 	}
 
 	// back text response //
-	if (text_back.getGlobalBounds().contains(W.mapPixelToCoords(sf::Mouse::getPosition(W))))
+	if (text_back.getGlobalBounds().contains(W->mapPixelToCoords(sf::Mouse::getPosition(*W))))
 	{
 		text_back.setCharacterSize(70);
 		text_back.setOrigin(8.0, 8.0);
@@ -86,9 +86,9 @@ Switcher  Settings::update(sf::RenderWindow& W)
 
 	return Switcher::settings;
 }
-void Settings::draw(sf::RenderWindow& W)
+void Settings::draw(sf::RenderWindow* W)
 {
-	W.draw(text_game_settings);
-	W.draw(text_audio_settings);
-	W.draw(text_back);
+	W->draw(text_game_settings);
+	W->draw(text_audio_settings);
+	W->draw(text_back);
 }

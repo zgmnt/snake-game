@@ -3,31 +3,34 @@
 void Sets::update(sf::RenderWindow* W)
 {
 	if (switcher != Switcher::game)
-		background.update(W);
+	{
+		background.update();
+		background.draw(W);
+	}
 	else
 		menu_music.stop();
 
 	switch (switcher)
 	{
 	case Switcher::menu:
-		switcher = menu.update(*W);
-		menu.draw(*W);
+		switcher = menu.update(W);
+		menu.draw(W);
 		break;
 	case Switcher::game:
 		switcher = game.update(W);
 		game.draw(W);
 		break;
 	case Switcher::settings:
-		switcher = settings.update(*W);
-		settings.draw(*W);
+		switcher = settings.update(W);
+		settings.draw(W);
 		break;
 	case Switcher::audio_settings:
-		switcher = audio_settings.update(*W, menu_music);
-		audio_settings.draw(*W);
+		switcher = audio_settings.update(W, menu_music);
+		audio_settings.draw(W);
 		break;
 	case Switcher::game_settings:
-		switcher = game_settings.update(*W);
-		game_settings.draw(*W);
+		switcher = game_settings.update(W);
+		game_settings.draw(W);
 		break;
 	}
 }
