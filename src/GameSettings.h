@@ -11,10 +11,18 @@ struct ScreenResolution
 class GameSettings
 {
 public:
+	GameSettings()
+	{
+		texts = { &m_text_back , &m_text_default, &m_text_snake_speed,
+		& m_text_board_sizeX ,& m_text_board_sizeY,& m_text_screen_resolution,
+		& m_text_obstacles,& m_text_music, &m_text_control_WSAD };
+	}
 	void load(int WIDTH, int HEIGHT);
 	Switcher update(sf::RenderWindow* W);
-	void draw(sf::RenderWindow* W) const;
+	void draw(sf::RenderWindow* W) const { Draw::draw(texts, W); }
 private:
+	std::vector<sf::Text*> texts;
+
 	// texts
 	sf::Text m_text_back;
 	sf::Text m_text_default;
@@ -25,24 +33,8 @@ private:
 	sf::Text m_text_obstacles;
 	sf::Text m_text_music;
 	sf::Text m_text_control_WSAD;
-	// fullscreen icon
-	sf::Texture fullscreen_icon_texture;
-	sf::Sprite fullscreen_icon_sprite;
 
 	// private functions //
 	ScreenResolution getScreenResolution() const;
 	void getConfigData();
 };
-
-inline void GameSettings::draw(sf::RenderWindow* W) const
-{
-	W->draw(m_text_back);
-	W->draw(m_text_default);
-	W->draw(m_text_board_sizeX);
-	W->draw(m_text_board_sizeY);
-	W->draw(m_text_snake_speed);
-	W->draw(m_text_screen_resolution);
-	W->draw(m_text_obstacles);
-	W->draw(m_text_music);
-	W->draw(m_text_control_WSAD);
-}

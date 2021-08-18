@@ -6,12 +6,31 @@
 class AudioSettings
 {
 public:
-	void draw(sf::RenderWindow* W) const;
+	AudioSettings()
+	{ 
+		texts = { 
+			&m_text_volume_number , & m_text_volume, & m_text_back
+		};	
+		sprites = {
+			&volume_up_sprite , & volume_down_sprite, & current_sound_icon_sprite,
+			&horizontal_line_sprite
+		};
+
+	}
+
+	void draw(sf::RenderWindow* W) const
+	{
+		Draw::draw(texts, W);
+		Draw::draw(sprites, W);
+	}
 	void load(int WIDTH, int HEIGHT);
 	Switcher update(sf::RenderWindow* W, sf::Music& background_music);
 	bool isMusicMuted() const { return current_sound_icon_sprite.getColor() == sf::Color::Red; }
 
 private:
+	std::vector<sf::Text*> texts;
+	std::vector<sf::Sprite*> sprites;
+
 	// texts //
 	sf::Text m_text_volume_number;
 	sf::Text m_text_volume;
@@ -37,17 +56,3 @@ private:
 	void musicVolumeChange(sf::Music& background_music, sf::RenderWindow* W);
 	void numberVolumeLevelUpdate(sf::Music& background_music);
 };
-
-inline void AudioSettings::draw(sf::RenderWindow* W) const
-{
-	// texts
-	W->draw(m_text_volume);
-	W->draw(m_text_back);
-	W->draw(m_text_volume_number);
-
-	// sprites
-	W->draw(volume_up_sprite);
-	W->draw(volume_down_sprite);
-	W->draw(current_sound_icon_sprite);
-	W->draw(horizontal_line_sprite);
-}

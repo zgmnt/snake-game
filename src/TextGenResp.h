@@ -57,3 +57,13 @@ public:
 	}
 };
 
+class Draw
+{
+public:
+	template<typename T>
+	static void draw(std::vector<T> vec, sf::RenderWindow* W)
+	{
+		for (auto  it : vec)
+			W->draw(*it);
+	}
+};

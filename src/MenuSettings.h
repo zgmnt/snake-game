@@ -5,18 +5,13 @@
 class Settings
 {
 public:
-	void draw(sf::RenderWindow* W) const;
+	Settings() { texts = { &m_text_game_settings , &m_text_audio_settings, &m_text_back }; }
+	void draw(sf::RenderWindow* W) const { Draw::draw(texts, W); }
 	void load(int WIDTH, int HEIGHT);
 	Switcher update(sf::RenderWindow* W);
 private:
+	std::vector<sf::Text*> texts;
 	sf::Text m_text_game_settings;
 	sf::Text m_text_audio_settings;
 	sf::Text m_text_back;
 };
-
-inline void Settings::draw(sf::RenderWindow* W) const
-{
-	W->draw(m_text_game_settings);
-	W->draw(m_text_audio_settings);
-	W->draw(m_text_back);
-}

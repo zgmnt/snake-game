@@ -1,6 +1,4 @@
 #include "Menu.h"
-#include "TextGenResp.h"
-
 
 void Menu::load(int WIDTH , int HEIGHT)
 {
