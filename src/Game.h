@@ -4,6 +4,21 @@
 
 class Game : public Logic, InGameSettings
 {
+public:
+	Game()
+	{ 
+		sprites = { &game_background_sprite , &exit_sprite, &game_settings_sprite };
+		rectangles = { &dark_effect , &inner_restart_game_button, &outer_restart_game_button };
+	}
+	void draw(sf::RenderWindow* W);
+	void load(int& WIDTH, int& HEIGHT);
+	Switcher update(sf::RenderWindow* W);
+	void musicPlay();
+	void musicStop();
+private:
+	std::vector<sf::Sprite*> sprites;
+	std::vector<sf::RectangleShape*> rectangles;
+
 	// obstacles //
 	sf::Texture rock_texture;
 	sf::Sprite rock_sprite;
@@ -47,10 +62,4 @@ class Game : public Logic, InGameSettings
 	void drawScoreboard(std::vector<sf::Text> vec, sf::RenderWindow* W);
 	void drawObstacles(std::vector<FinalObstaclesCoords> vec, sf::RenderWindow* W);
 
-public:
-	void draw(sf::RenderWindow* W);
-	void load(int& WIDTH, int& HEIGHT);
-	Switcher update(sf::RenderWindow* W);
-	void musicPlay();
-	void musicStop();
 };

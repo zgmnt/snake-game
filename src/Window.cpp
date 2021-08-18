@@ -2,28 +2,30 @@
 
 void Window::update()
 {
-	window = new sf::RenderWindow(sf::VideoMode(m_width, m_height), m_window_name);
-	window->setFramerateLimit(25);
+	if(!m_window)
+		m_window = new sf::RenderWindow(sf::VideoMode(m_width, m_height), m_window_name);
+	
+	m_window->setFramerateLimit(25);
 
 	Sets set{ Switcher::menu };
 	set.load(m_width, m_height);
 
-	while (window->isOpen())
+	while (m_window->isOpen())
 	{
 		// quit on ESC
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			window->close();
+			m_window->close();
 
 		sf::Event event;
-		while (window->pollEvent(event))
+		while (m_window->pollEvent(event))
 		{
 			// quit on close icon
 			if (event.type == sf::Event::Closed)
-				window->close();
+				m_window->close();
 		}
 
-		window->clear();
-		set.update(window);
-		window->display();
+		m_window->clear();
+		set.update(m_window);
+		m_window->display();
 	}
 }

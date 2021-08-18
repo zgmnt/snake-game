@@ -1,9 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "TextGenResp.h"
+
 
 class InGameSettings
 {
-	sf::Font font;
+	std::vector<sf::Text*> texts;
+	std::vector<sf::Sprite*> sprites;
 
 	// board
 	sf::Text text_board_size_string;
@@ -81,13 +84,30 @@ class InGameSettings
 	void getConfigData(bool& isObstaclesEnabled, bool& isArrowControlType);
 
 public:
-	InGameSettings() {};
+	InGameSettings() 
+	{
+		texts = 
+		{
+			&back_to_game_text, & text_snake_speed,
+			& obstacles_text, & text_snake_speed_string,
+			& text_board_size_string, & control_type_text,
+			& music_text
+		};
+		sprites =
+		{
+			&up_sprite_snake_speed, & down_sprite_snake_speed,
+			& horizontal_line_sprite_snake_speed, & up_sprite_board_sizeX,
+			& up_sprite_board_sizeY, & down_sprite_board_sizeX,
+			& down_sprite_board_sizeY, & horizontal_line_sprite_board_sizeX,
+			& horizontal_line_sprite_board_sizeY
+		};
+	};
 	~InGameSettings() {};
-	void draw(sf::RenderWindow* WINDOW);
+	void draw(sf::RenderWindow* WINDOW) const;
 	void update(sf::RenderWindow* WINDOW, bool& bShowSettings,bool& isObstaclesEnabled, 
 		bool& isArrowControlType, sf::Music& isMusicPlaying, bool& bEndGame);
 	void load(int WIDTH, int HEIGHT, bool& isObstaclesEnabled, bool& isArrowControlType);
-	float getSnakeSpeed() { return fsnake_speed; }
-	float getBoardSizeX() { return (fboard_sizeX / 10); }
-	float getBoardSizeY() { return (fboard_sizeY / 10); }
+	float getSnakeSpeed() const { return fsnake_speed; }
+	float getBoardSizeX() const { return (fboard_sizeX / 10); }
+	float getBoardSizeY() const { return (fboard_sizeY / 10); }
 };

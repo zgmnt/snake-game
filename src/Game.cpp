@@ -34,13 +34,11 @@ void Game::load(int& WIDTH, int& HEIGHT)
 	InGameSettings::load(WIDTH, HEIGHT,Logic::isObstaclesEnabled(),
 		Logic::isArrowControlType());
 
+	Generator gen{ "fonts\\mrsmonster.ttf" };
 	// end game text
-	end_game_text.setFont(font);
-	end_game_text.setString("END GAME");
-	end_game_text.setCharacterSize(40);
-	end_game_text.setPosition(WIDTH / 2 - end_game_text.getCharacterSize() * 3, HEIGHT / 2 - end_game_text.getCharacterSize());
-	end_game_text.setFillColor(sf::Color::Yellow);
-	end_game_text.setOutlineColor(sf::Color::Green);
+	Generator::setText(end_game_text, 40, sf::Color::Yellow, "END GAME", 
+		std::make_pair(625 - end_game_text.getCharacterSize() * 3, 360 - end_game_text.getCharacterSize()));
+
 	dark_effect.setSize(sf::Vector2f(1250, 750));
 	dark_effect.setFillColor(sf::Color(1, 1, 1, 155));
 
@@ -54,11 +52,8 @@ void Game::load(int& WIDTH, int& HEIGHT)
 	inner_restart_game_button.setFillColor(sf::Color(211, 211, 211, 255));
 	inner_restart_game_button.setPosition(outer_restart_game_button.getPosition().x + 10, outer_restart_game_button.getPosition().y + 10);
 
-	restart_game_text.setFont(font);
-	restart_game_text.setString("RESTART GAME");
-	restart_game_text.setCharacterSize(25);
-	restart_game_text.setPosition(inner_restart_game_button.getPosition().x + 15, inner_restart_game_button.getPosition().y + 8);
-	restart_game_text.setFillColor(sf::Color::Red);
+	Generator::setText(end_game_text, 25, sf::Color::Red, "RESTART GAME",
+		std::make_pair(inner_restart_game_button.getPosition().x + 15, inner_restart_game_button.getPosition().y + 8));
 
 	// game music
 	game_music.openFromFile("audio\\game_music.ogg");
@@ -100,10 +95,9 @@ void Game::musicPlay()
 
 void Game::draw(sf::RenderWindow* W)
 {
-	W->draw(game_background_sprite);
-	W->draw(exit_sprite);
-	W->draw(game_settings_sprite);
+	Draw::draw(sprites, W);
 	W->draw(Board::getSprite());
+
 	Logic::drawSnake(W);
 	drawCounter(Logic::getCounterSprite(), W);
 	drawFood(Logic::getFoodSprite(), W);
@@ -150,11 +144,8 @@ void Game::gameSettingsResponse(const sf::RenderWindow* W)
 }
 void Game::drawEndGameAlert(sf::RenderWindow* WINDOW)
 {
-	WINDOW->draw(dark_effect);
+	Draw::draw(rectangles, WINDOW);
 	WINDOW->draw(end_game_text);
-	// restart_game button 
-	WINDOW->draw(outer_restart_game_button);
-	WINDOW->draw(inner_restart_game_button);
 	WINDOW->draw(restart_game_text);
 
 	if (outer_restart_game_button.getGlobalBounds().contains((*WINDOW).mapPixelToCoords(sf::Mouse::getPosition(*WINDOW))))
