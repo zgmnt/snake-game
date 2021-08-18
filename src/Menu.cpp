@@ -20,6 +20,6 @@ Switcher Menu::update(sf::RenderWindow* W)
 		return Switcher::settings;
 	else if (Response::isChecked(W, m_text_exit))
 		W->close();
-	else
-		return Switcher::menu;
+	
+	return Switcher::menu;
 }

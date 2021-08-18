@@ -42,6 +42,18 @@ public:
 		}
 		return false;
 	}
+
+	static bool isChecked(sf::RenderWindow* W, sf::Sprite& sprite)
+	{
+		if (sprite.getGlobalBounds().contains(W->mapPixelToCoords(sf::Mouse::getPosition(*W))))
+		{
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				Sleep(150);
+				return true;
+			}
+		}
+		return false;
+	}
 };
 
-sf::Font Generator::font;

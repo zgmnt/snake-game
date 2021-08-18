@@ -1,6 +1,6 @@
 #include "Sets.h"
 
-void Sets::update(sf::RenderWindow* W)
+void Sets::update(sf::RenderWindow* W) 
 {
 	if (switcher != Switcher::game)
 	{
