@@ -2,15 +2,23 @@
 
 class Background
 {
+public:
+	Background(const int time = 30) : background_switch_time(time)
+	{
+		background_change_direction = false;
+	}
+	~Background(){}
+	void update();
+	void load();
+	void draw(sf::RenderWindow* W)const { W->draw(sprite_current_background); }
+private:	
 	// clocks //
 	sf::Clock background_switch_clock;
 	sf::Clock background_alpha_clock;
 
 	// background config //
-	short choice = 0;
-	bool background_change_direction{ false };
-	const short max_left_background_offset{ -730 };
-	const short background_switch_time{ 30 };
+	bool background_change_direction;
+	const short background_switch_time;
 
 	//background textures & sprites //
 	sf::Texture background_1;
@@ -26,8 +34,4 @@ class Background
 	void switchBackground();
 	void transition();
 	void alpha();
-
-public:
-	void update(sf::RenderWindow* W);
-	void load();
 };

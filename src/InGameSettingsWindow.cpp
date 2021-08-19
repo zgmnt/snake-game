@@ -1,10 +1,13 @@
 #include "InGameSettingsWindow.h"
 #include <Windows.h>
+<<<<<<< HEAD
 #include <iostream>
+=======
+>>>>>>> c2d2daa421e73043a787e95f0ea1252f0228cf88
 #include <fstream>
 
 // public
-void InGameSettings::draw(sf::RenderWindow* WINDOW)
+void InGameSettings::draw(sf::RenderWindow* WINDOW) const
 {
 	// main window
 	WINDOW->draw(outerFrame);
@@ -13,48 +16,35 @@ void InGameSettings::draw(sf::RenderWindow* WINDOW)
 	// back to game
 	WINDOW->draw(outer_back_to_game_button);
 	WINDOW->draw(inner_back_to_game_button);
-	WINDOW->draw(back_to_game_text);
 
-	// snake
-	WINDOW->draw(up_sprite_snake_speed);
-	WINDOW->draw(down_sprite_snake_speed);
-	WINDOW->draw(text_snake_speed_string);
-	WINDOW->draw(horizontal_line_sprite_snake_speed);
-	WINDOW->draw(text_snake_speed);
-
-	// board
-	WINDOW->draw(text_board_size_string);
-	WINDOW->draw(up_sprite_board_sizeX);
-	WINDOW->draw(up_sprite_board_sizeY);
-	WINDOW->draw(down_sprite_board_sizeX);
-	WINDOW->draw(down_sprite_board_sizeY);
-	WINDOW->draw(horizontal_line_sprite_board_sizeX);
-	WINDOW->draw(horizontal_line_sprite_board_sizeY);
+	Draw::draw(sprites, WINDOW);
 
 	// obstacles button
 	WINDOW->draw(outer_obstacles_button);
 	WINDOW->draw(inner_obstacles_button);
-	WINDOW->draw(obstacles_text);
 
 	// control type button
 	WINDOW->draw(outer_control_type_button);
 	WINDOW->draw(inner_control_type_button);
-	WINDOW->draw(control_type_text);
 
 	// music button 
 	WINDOW->draw(outer_music_button);
 	WINDOW->draw(inner_music_button);
-	WINDOW->draw(music_text);
 
+	Draw::draw(texts, WINDOW);
 }
 void InGameSettings::load(int WIDTH, int HEIGHT,bool& isObstaclesEnabled, bool& isArrowControlType)
 {
 	getConfigData(isObstaclesEnabled, isArrowControlType);
+<<<<<<< HEAD
 	// font
 	font.loadFromFile("fonts\\mrsmonster.ttf");
 	text_snake_speed.setFont(font);
 	text_board_size_string.setFont(font);
 	text_snake_speed_string.setFont(font);
+=======
+	Generator gen{ "fonts\\mrsmonster.ttf" };
+>>>>>>> c2d2daa421e73043a787e95f0ea1252f0228cf88
 
 	// main window
 	outerFrame.setSize(sf::Vector2f(outer_frame_size, outer_frame_size));
@@ -74,19 +64,15 @@ void InGameSettings::load(int WIDTH, int HEIGHT,bool& isObstaclesEnabled, bool& 
 	inner_back_to_game_button.setSize(sf::Vector2f(nsize_back_to_game_button_x - 6, nsize_back_to_game_button_y - 6));
 	inner_back_to_game_button.setFillColor(sf::Color(211, 211, 211, 255));
 	inner_back_to_game_button.setPosition(outer_back_to_game_button.getPosition().x + 10, outer_back_to_game_button.getPosition().y + 10);
-	back_to_game_text.setFont(font);
-	back_to_game_text.setString("BACK TO GAME");
-	back_to_game_text.setCharacterSize(30);
-	back_to_game_text.setPosition(inner_back_to_game_button.getPosition().x + back_to_game_text.getCharacterSize() / 2, inner_back_to_game_button.getPosition().y + 8);
-	back_to_game_text.setFillColor(sf::Color::Blue);
 
-	// board
-	text_board_size_string.setOutlineColor(sf::Color::Red);
-	text_board_size_string.setFillColor(sf::Color::White);
-	text_board_size_string.setOutlineThickness(2);
-	text_board_size_string.setCharacterSize(30);
-	text_board_size_string.setPosition(outerFrame.getPosition().x - 200, outerFrame.getPosition().y - 220);
-	text_board_size_string.setString("BOARD SIZE");
+	// text board size
+	Generator::setText(back_to_game_text, 30, sf::Color::Blue, "BACK TO GAME",
+		std::make_pair(inner_back_to_game_button.getPosition().x + back_to_game_text.getCharacterSize() / 2, inner_back_to_game_button.getPosition().y + 8));
+
+	// exit text
+	Generator::setText(text_board_size_string, 30, sf::Color::White, "BOARD SIZE",
+		std::make_pair(outerFrame.getPosition().x - 200, outerFrame.getPosition().y - 220));
+
 	horizontal_line_board.loadFromFile("img\\horizontal_line.png");
 	horizontal_line_sprite_board_sizeX = sf::Sprite(horizontal_line_board);
 	horizontal_line_sprite_board_sizeX.setPosition(text_board_size_string.getPosition().x + 200,
@@ -99,18 +85,14 @@ void InGameSettings::load(int WIDTH, int HEIGHT,bool& isObstaclesEnabled, bool& 
 	horizontal_line_sprite_board_sizeY.setScale(0.1, 0.1);
 	horizontal_line_sprite_board_sizeY.setColor(sf::Color::White);
 
-	// snake
-	text_snake_speed_string.setOutlineColor(sf::Color::Red);
-	text_snake_speed_string.setFillColor(sf::Color::White);
-	text_snake_speed_string.setOutlineThickness(2);
-	text_snake_speed_string.setCharacterSize(30);
-	text_snake_speed_string.setPosition(outerFrame.getPosition().x - 200, outerFrame.getPosition().y - 150);
-	text_snake_speed_string.setString("SNAKE SPEED");
-	text_snake_speed.setOutlineColor(sf::Color::Red);
-	text_snake_speed.setFillColor(sf::Color::White);
-	text_snake_speed.setOutlineThickness(1);
-	text_snake_speed.setCharacterSize(30);
-	text_snake_speed.setPosition(text_snake_speed_string.getPosition().x + 370, text_snake_speed_string.getPosition().y + 10);
+	// snake string
+	Generator::setText(text_snake_speed_string, 30, sf::Color::White, "SNAKE SPEED",
+		std::make_pair(outerFrame.getPosition().x - 200, outerFrame.getPosition().y - 150));
+
+	// snake 
+	Generator::setText(text_snake_speed, 30, sf::Color::White, "SNAKE SPEED",
+		std::make_pair(text_snake_speed_string.getPosition().x + 370, text_snake_speed_string.getPosition().y + 10));
+
 	horizontal_line_snake.loadFromFile("img\\horizontal_line.png");
 	horizontal_line_sprite_snake_speed = sf::Sprite(horizontal_line_snake);
 	horizontal_line_sprite_snake_speed.setPosition(text_snake_speed.getPosition().x - text_snake_speed.getCharacterSize() * 5, text_snake_speed.getPosition().y + 15);
@@ -153,11 +135,10 @@ void InGameSettings::load(int WIDTH, int HEIGHT,bool& isObstaclesEnabled, bool& 
 	inner_obstacles_button.setSize(sf::Vector2f(nsize_obstacles_button_x - 6, nsize_obstacles_button_y - 6));
 	inner_obstacles_button.setFillColor(sf::Color(211, 211, 211, 255));
 	inner_obstacles_button.setPosition(outer_obstacles_button.getPosition().x + 10, outer_obstacles_button.getPosition().y + 10);
-	obstacles_text.setFont(font);
-	obstacles_text.setString("OBSTACLES : ON");
-	obstacles_text.setCharacterSize(25);
-	obstacles_text.setPosition(inner_obstacles_button.getPosition().x + 40, inner_obstacles_button.getPosition().y + 8);
-	obstacles_text.setFillColor(sf::Color::Red);
+	
+	// obstacles text
+	Generator::setText(obstacles_text, 25, sf::Color::Red, "OBSTACLES : ON",
+		std::make_pair(inner_obstacles_button.getPosition().x + 40, inner_obstacles_button.getPosition().y + 8));
 
 	// control type button //
 	outer_control_type_button.setSize(sf::Vector2f(nsize_back_control_type_button_x, nsize_back_control_type_button_y));
@@ -169,11 +150,9 @@ void InGameSettings::load(int WIDTH, int HEIGHT,bool& isObstaclesEnabled, bool& 
 	inner_control_type_button.setFillColor(sf::Color(211, 211, 211, 255));
 	inner_control_type_button.setPosition(outer_control_type_button.getPosition().x + 10, outer_control_type_button.getPosition().y + 10);
 
-	control_type_text.setFont(font);
-	control_type_text.setString("CONTROL TYPE : ARROWS");
-	control_type_text.setCharacterSize(25);
-	control_type_text.setPosition(inner_control_type_button.getPosition().x + 15, inner_control_type_button.getPosition().y + 8);
-	control_type_text.setFillColor(sf::Color::Red);
+	// control type text 
+	Generator::setText(control_type_text, 25, sf::Color::Red, "CONTROL TYPE : ARROWS",
+		std::make_pair(inner_control_type_button.getPosition().x + 15, inner_control_type_button.getPosition().y + 8));
 
 	// music button //
 	outer_music_button.setSize(sf::Vector2f(nsize_music_button_x, nsize_music_button_y));
@@ -185,11 +164,10 @@ void InGameSettings::load(int WIDTH, int HEIGHT,bool& isObstaclesEnabled, bool& 
 	inner_music_button.setFillColor(sf::Color(211, 211, 211, 255));
 	inner_music_button.setPosition(outer_music_button.getPosition().x + 10, outer_music_button.getPosition().y + 10);
 
-	music_text.setFont(font);
-	music_text.setString("MUSIC : ON");
-	music_text.setCharacterSize(25);
-	music_text.setPosition(inner_music_button.getPosition().x + 55, inner_music_button.getPosition().y + 8);
-	music_text.setFillColor(sf::Color::Red);
+	// music text
+	Generator::setText(music_text, 25, sf::Color::Red, "MUSIC : ON",
+		std::make_pair(inner_music_button.getPosition().x + 55, inner_music_button.getPosition().y + 8));
+	
 }
 void InGameSettings::update(sf::RenderWindow* WINDOW, bool& bShowSettings, bool& isObstaclesEnabled,
 bool& isArrowControlType, sf::Music& isMusicPlaying, bool& bEndGame)
@@ -398,7 +376,11 @@ void InGameSettings::getConfigData(bool& isObstaclesEnabled, bool& isArrowContro
 {
 	std::vector<float*> values
 	{
+<<<<<<< HEAD
 		&fboard_sizeX,
+=======
+		& fboard_sizeX,
+>>>>>>> c2d2daa421e73043a787e95f0ea1252f0228cf88
 		& fboard_sizeY,
 		& fsnake_speed,
 	};
@@ -428,4 +410,8 @@ void InGameSettings::getConfigData(bool& isObstaclesEnabled, bool& isArrowContro
 		else if (temp == "F") { *it = false; }
 	}
 	file.close();
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c2d2daa421e73043a787e95f0ea1252f0228cf88

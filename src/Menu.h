@@ -1,15 +1,20 @@
 #include <SFML/Graphics.hpp>
+#include <utility>
+#include <vector>
 #include "SetsSwitcher.h"
+#include "TextGenResp.h"
+
 
 class Menu
 {
-	sf::Font font;
-
-	sf::Text text_start;
-	sf::Text text_settings;
-	sf::Text text_exit;
 public:
-	void draw(sf::RenderWindow& W);
-	void load(int&WIDTH, int&HEIGHT);
-	Switcher update(sf::RenderWindow& W);
+	Menu() { texts={ &m_text_start , &m_text_settings, &m_text_exit }; }
+	void draw(sf::RenderWindow* W) const { Draw::draw(texts, W); }
+	void load(int WIDTH, int HEIGHT);
+	Switcher update(sf::RenderWindow* W) ;
+private:
+	std::vector<sf::Text*> texts;
+	sf::Text m_text_start;
+	sf::Text m_text_settings;
+	sf::Text m_text_exit;
 };
