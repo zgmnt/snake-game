@@ -7,7 +7,7 @@ class InGameSettings
 {
 	std::vector<sf::Text*> texts;
 	std::vector<sf::Sprite*> sprites;
-
+	sf::Font font;
 	// board
 	sf::Text text_board_size_string;
 
@@ -107,13 +107,13 @@ public:
 	void update(sf::RenderWindow* WINDOW, bool& bShowSettings,bool& isObstaclesEnabled, 
 		bool& isArrowControlType, sf::Music& isMusicPlaying, bool& bEndGame);
 	void load(int WIDTH, int HEIGHT, bool& isObstaclesEnabled, bool& isArrowControlType);
-<<<<<<< HEAD
+
 	float getSnakeSpeed() { return fsnake_speed; }
 	float getBoardSizeX() { return (fboard_sizeX / 10); }
 	float getBoardSizeY() { return (fboard_sizeY / 10); }
-=======
+
 	float getSnakeSpeed() const { return fsnake_speed; }
 	float getBoardSizeX() const { return (fboard_sizeX / 10); }
 	float getBoardSizeY() const { return (fboard_sizeY / 10); }
->>>>>>> c2d2daa421e73043a787e95f0ea1252f0228cf88
+
 };

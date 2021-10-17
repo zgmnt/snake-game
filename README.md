@@ -1,7 +1,7 @@
 # Table of contents
 * [About](#about)
 * [Tools used](#tools-used)
-* [Documentation and download](#documentation-and-download)
+* [Download](#download)
 * [Further development](#further-development)
 * [License](#license)
 * [Copyrights](#Copyrights)
@@ -18,8 +18,9 @@ The application is written in C++ and uses SFML as a graphics library.
 * Visual Studio
 * SFML
 
-## Documentation
-
+## Download
+simply download snakeGame.exe or build the project yourself
+1.
 ## Further development
 
 ## License

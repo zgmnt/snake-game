@@ -1,9 +1,9 @@
 #include "InGameSettingsWindow.h"
 #include <Windows.h>
-<<<<<<< HEAD
+
 #include <iostream>
-=======
->>>>>>> c2d2daa421e73043a787e95f0ea1252f0228cf88
+
+
 #include <fstream>
 
 // public
@@ -36,15 +36,15 @@ void InGameSettings::draw(sf::RenderWindow* WINDOW) const
 void InGameSettings::load(int WIDTH, int HEIGHT,bool& isObstaclesEnabled, bool& isArrowControlType)
 {
 	getConfigData(isObstaclesEnabled, isArrowControlType);
-<<<<<<< HEAD
+
 	// font
 	font.loadFromFile("fonts\\mrsmonster.ttf");
 	text_snake_speed.setFont(font);
 	text_board_size_string.setFont(font);
 	text_snake_speed_string.setFont(font);
-=======
+
 	Generator gen{ "fonts\\mrsmonster.ttf" };
->>>>>>> c2d2daa421e73043a787e95f0ea1252f0228cf88
+
 
 	// main window
 	outerFrame.setSize(sf::Vector2f(outer_frame_size, outer_frame_size));
@@ -376,11 +376,9 @@ void InGameSettings::getConfigData(bool& isObstaclesEnabled, bool& isArrowContro
 {
 	std::vector<float*> values
 	{
-<<<<<<< HEAD
+
 		&fboard_sizeX,
-=======
 		& fboard_sizeX,
->>>>>>> c2d2daa421e73043a787e95f0ea1252f0228cf88
 		& fboard_sizeY,
 		& fsnake_speed,
 	};
@@ -393,7 +391,7 @@ void InGameSettings::getConfigData(bool& isObstaclesEnabled, bool& isArrowContro
 
 	std::fstream file;
 	file.open("game_config.txt");
-	std::string temp;
+	/*std::string temp;
 
 	for (auto it : values)
 	{
@@ -409,9 +407,7 @@ void InGameSettings::getConfigData(bool& isObstaclesEnabled, bool& isArrowContro
 		if (temp == "N") { *it = true; }
 		else if (temp == "F") { *it = false; }
 	}
-	file.close();
-<<<<<<< HEAD
+	file.close();*/
+
 }
-=======
-}
->>>>>>> c2d2daa421e73043a787e95f0ea1252f0228cf88
+

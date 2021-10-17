@@ -18,18 +18,17 @@ void GameSettings::load(int WIDTH, int HEIGHT)
 	Generator::setText(m_text_screen_resolution, 50, sf::Color::Yellow, "YOUR RESOLUTION : "
 		+ std::to_string(getScreenResolution().width) + " " + std::to_string(getScreenResolution().height), std::make_pair(125, 10));
 	// text constrol
-<<<<<<< HEAD
-	text_control_WSAD.setFont(font);
-	text_control_WSAD.setString("CONTROL TYPE ARROWS ");
-	text_control_WSAD.setOutlineColor(sf::Color::Red);
-	text_control_WSAD.setFillColor(sf::Color::Yellow);
-	text_control_WSAD.setOutlineThickness(2);
-	text_control_WSAD.setCharacterSize(35);
-	text_control_WSAD.setPosition(WIDTH / 10, 450);
+	//text_control_WSAD.setFont(font);
+	m_text_control_WSAD.setString("CONTROL TYPE ARROWS ");
+	m_text_control_WSAD.setOutlineColor(sf::Color::Red);
+	m_text_control_WSAD.setFillColor(sf::Color::Yellow);
+	m_text_control_WSAD.setOutlineThickness(2);
+	m_text_control_WSAD.setCharacterSize(35);
+	m_text_control_WSAD.setPosition(WIDTH / 10, 450);
 
-=======
+
 	Generator::setText(m_text_control_WSAD, 35, sf::Color::Yellow, "CONTROL TYPE ARROWS ", std::make_pair(125, 450));
->>>>>>> c2d2daa421e73043a787e95f0ea1252f0228cf88
+
 	// text music
 	Generator::setText(m_text_music, 35, sf::Color::Yellow, "MUSIC ", std::make_pair(125, 400));
 	// text obstacles
