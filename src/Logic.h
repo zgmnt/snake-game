@@ -4,7 +4,8 @@
 #include "Scoreboard.h"
 #include "Board.h"
 #include <array>
-
+#include "../Config.h"
+// branch refactoring
 
 enum class Direction
 {
@@ -30,7 +31,7 @@ class Logic : public Board
 	Direction direction;
 	TimeCounter counter;
 	Scoreboard scoreboard;
-	int score{ 0 };
+	
 
 	// snake body - single square
 	sf::RectangleShape snake_body;
@@ -53,10 +54,10 @@ class Logic : public Board
 
 	// food
 	std::vector<Food> food_set;
-	short max_food_amount{ 8 };
+
 
 	//init snake length
-	int length{ 8 };
+	
 
 	unsigned short self_eating{ 4 };
 	static const int maxLenght{ 100 };
@@ -69,11 +70,10 @@ class Logic : public Board
 	std::array< Snake, maxLenght> snake;
 
 	// board features
-	int square_size{ 16 };
+
 	int board_texture_size_x{ 0 };
 	int board_texture_size_y{ 0 };
-	int board_X_fields{ 43 };
-	int board_Y_fields{ 37 };
+
 
 	// clocks //
 	sf::Clock food_clock;
@@ -84,10 +84,9 @@ class Logic : public Board
 	// obstacle coordinates //
 	std::vector<FinalObstaclesCoords> final_obstacles_coords;
 	std::vector<ObstaclesCoords>  obstacles_coords;
-	// max obstacles
-	int obstacles_amount{ 8 };
 
-	bool bObstaclesEnabled{ false };
+
+
 	bool bArrowsControlType{ true };
 
 	// private functions //
@@ -110,13 +109,13 @@ class Logic : public Board
 	void setBoardField(float BOARD_SIZEX, float BOARD_SIZEY);
 
 public:
-	Logic(Direction dir, unsigned int&& snake_len) { direction = dir; length = snake_len; }
-	explicit Logic(unsigned int&& snake_len) : length(snake_len) {}
+	Logic(Direction dir, unsigned int&& snake_len) { direction = dir; Config::setSnakeLength(snake_len); }
+	explicit Logic(unsigned int&& snake_len) { Config::setSnakeLength(snake_len); }
 	explicit Logic(Direction dir = Direction::right) : direction(dir) { }
 
 	void load();
 	void drawSnake(sf::RenderWindow* W);
-	void update(float snake_speed , bool& bEndGame, float fBOARD_SIZEX, float fBOARD_SIZEY);
+	void update(bool& bEndGame);
 	// board
 	void setBoardSize(float fBOARD_SIZE_X, float fBOARD_SIZE_Y) const;
 	void setBoardFeatures(sf::Texture board_texture, sf::Sprite board_sprite);
@@ -127,8 +126,8 @@ public:
 	std::vector<sf::Text> getScoreboard();
 	std::vector<FinalObstaclesCoords> getObstacles();
 
-	bool &isObstaclesEnabled()	    { return bObstaclesEnabled;			  }
-	bool & isArrowControlType()	    { return bArrowsControlType;		  }
+	bool isObstaclesEnabled()	    { return Config::isObstaclesEnabled();}
+	bool isArrowControlType()	    { return bArrowsControlType;		  }
 	int getFoodSize() const			{ return food_set.size();			  }
 	sf::Sprite getFoodSprite(int n) { return food_set[n].getFoodSprite(); }
 };

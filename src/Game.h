@@ -2,7 +2,7 @@
 #include "Logic.h"
 #include "InGameSettingsWindow.h"
 
-class Game : public Logic, InGameSettings
+class Game : public Logic
 {
 public:
 	Game()
@@ -24,7 +24,7 @@ private:
 	sf::Sprite rock_sprite;
 	sf::Font font;
 	// main game music
-	sf::Music game_music;
+
 
 	// background
 	sf::Texture game_background_texture;

@@ -16,8 +16,7 @@ void Game::load(int& WIDTH, int& HEIGHT)
 	game_background_sprite = sf::Sprite(game_background_texture);
 
 	// main game music
-	game_music.openFromFile("audio\\game_music.ogg");
-	game_music.setLoop(true);
+	
 
 	// exit icon
 	exit_texture.loadFromFile("img\\exit.png");
@@ -31,13 +30,13 @@ void Game::load(int& WIDTH, int& HEIGHT)
 	game_settings_sprite.setScale(0.065, 0.065);
 
 	// game settings window init
-	InGameSettings::load(WIDTH, HEIGHT,Logic::isObstaclesEnabled(),
-		Logic::isArrowControlType());
+	//InGameSettings::load(WIDTH, HEIGHT,Logic::isObstaclesEnabled(),
+		Logic::isArrowControlType();
 
-	Generator gen{ "fonts\\mrsmonster.ttf" };
+	//Generator gen{ "fonts\\mrsmonster.ttf" };
 	// end game text
-	Generator::setText(end_game_text, 40, sf::Color::Yellow, "END GAME", 
-		std::make_pair(625 - end_game_text.getCharacterSize() * 3, 360 - end_game_text.getCharacterSize()));
+	//Generator::setText(end_game_text, 40, sf::Color::Yellow, "END GAME", 
+		//std::make_pair(625 - end_game_text.getCharacterSize() * 3, 360 - end_game_text.getCharacterSize()));
 
 	dark_effect.setSize(sf::Vector2f(1250, 750));
 	dark_effect.setFillColor(sf::Color(1, 1, 1, 155));
@@ -52,12 +51,10 @@ void Game::load(int& WIDTH, int& HEIGHT)
 	inner_restart_game_button.setFillColor(sf::Color(211, 211, 211, 255));
 	inner_restart_game_button.setPosition(outer_restart_game_button.getPosition().x + 10, outer_restart_game_button.getPosition().y + 10);
 
-	Generator::setText(end_game_text, 25, sf::Color::Red, "RESTART GAME",
-		std::make_pair(inner_restart_game_button.getPosition().x + 15, inner_restart_game_button.getPosition().y + 8));
+	//Generator::setText(end_game_text, 25, sf::Color::Red, "RESTART GAME",
+		//std::make_pair(inner_restart_game_button.getPosition().x + 15, inner_restart_game_button.getPosition().y + 8));
 
-	// game music
-	game_music.openFromFile("audio\\game_music.ogg");
-	game_music.setLoop(true);
+
 }
 Switcher Game::update(sf::RenderWindow* W)
 {
@@ -67,14 +64,7 @@ Switcher Game::update(sf::RenderWindow* W)
 	gameSettingsResponse(W);
 
 	if (!bEndGame)
-		Logic::update(InGameSettings::getSnakeSpeed(), bEndGame,
-			InGameSettings::getBoardSizeX(), InGameSettings::getBoardSizeY());
-
-	if (bShowSettings)
-	{
-		InGameSettings::update(W, bShowSettings, Logic::isObstaclesEnabled(),
-			Logic::isArrowControlType(), game_music, bEndGame);
-	}
+		Logic::update(bEndGame);
 
 	if (bBackToMenu)
 		return Switcher::menu;
@@ -82,20 +72,11 @@ Switcher Game::update(sf::RenderWindow* W)
 	return Switcher::game;
 }
 
-// music
-void Game::musicStop()
-{
-	game_music.pause();
-}
-void Game::musicPlay()
-{
-	if (!game_music.getStatus())
-		game_music.play();
-}
+
 
 void Game::draw(sf::RenderWindow* W)
 {
-	Draw::draw(sprites, W);
+	//Draw::draw(sprites, W);
 	W->draw(Board::getSprite());
 
 	Logic::drawSnake(W);
@@ -109,12 +90,11 @@ void Game::draw(sf::RenderWindow* W)
 	if (bShowSettings)
 	{
 		W->draw(dark_effect);
-		InGameSettings::draw(W);
+		//InGameSettings::draw(W);
 	}
 
 	if (bEndGame)
 	{
-		game_music.stop();
 		drawEndGameAlert(W);
 	}
 }
@@ -144,7 +124,7 @@ void Game::gameSettingsResponse(const sf::RenderWindow* W)
 }
 void Game::drawEndGameAlert(sf::RenderWindow* WINDOW)
 {
-	Draw::draw(rectangles, WINDOW);
+	//Draw::draw(rectangles, WINDOW);
 	WINDOW->draw(end_game_text);
 	WINDOW->draw(restart_game_text);
 
