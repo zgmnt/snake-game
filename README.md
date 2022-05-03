@@ -1,7 +1,7 @@
 # Table of contents
 * [About](#about)
 * [Tools used](#tools-used)
-* [Download](#download)
+* [RunOnYourPC](#run)
 * [Further development](#further-development)
 * [License](#license)
 * [Copyrights](#Copyrights)
@@ -18,9 +18,12 @@ The application is written in C++ and uses SFML as a graphics library.
 * Visual Studio
 * SFML
 
-## Download
-simply download snakeGame.exe or build the project yourself
-1.
+## RunOnYourPC
+1. install VS
+2. git clone https://github.com/zgmnt/snake-game.git
+3. open VS, open solution
+4. change to Debug and x86
+5. run
 ## Further development
 
 ## License
