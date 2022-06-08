@@ -1,5 +1,5 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+#include <../../dependencies/SFML/Audio.hpp>
+#include <../../dependencies/SFML/Graphics.hpp>
 #include "TextGenResp.h"
 
 

@@ -1,4 +1,5 @@
-#include <SFML/Graphics.hpp>
+
+#include <../../dependencies/SFML/Graphics.hpp>
 #include <Windows.h>
 
 enum class FoodType

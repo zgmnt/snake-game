@@ -1,4 +1,5 @@
-#include <SFML/Graphics.hpp>
+#include <../../dependencies/SFML/Audio.hpp>
+#include <../../dependencies/SFML/Graphics.hpp>
 #include "Food.h"
 #include "TimeCounter.h"
 #include "Scoreboard.h"

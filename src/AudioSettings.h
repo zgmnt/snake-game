@@ -1,5 +1,5 @@
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
+#include <../../dependencies/SFML/Audio.hpp>
+#include <../../dependencies/SFML/Graphics.hpp>
 #include "SetsSwitcher.h"
 #include "TextGenResp.h"
 

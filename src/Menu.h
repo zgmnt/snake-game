@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+#include <../../dependencies/SFML/Graphics.hpp>
 #include <utility>
 #include <vector>
 #include "SetsSwitcher.h"

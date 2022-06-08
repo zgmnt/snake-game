@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+#include <../../dependencies/SFML/Graphics.hpp>
 
 class Scoreboard
 {
