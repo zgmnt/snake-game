@@ -1,2 +1,393 @@
-﻿  Config.cpp
+﻿  AudioSettings.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,34): warning C4244: "argument": konwersja z "_Ty2" do "float", możliwa utrata danych
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,23): warning C4244: "argument": konwersja z "_Ty1" do "float", możliwa utrata danych
+          with
+          [
+              _Ty1=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\AudioSettings.cpp(19,38): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\AudioSettings.cpp(23,40): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\AudioSettings.cpp(36,43): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\AudioSettings.cpp(65,47): warning C4305: "argument": obcięcie z "double" do "float"
+  Background.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\Background.cpp(67,56): warning C4244: "argument": konwersja z "float" do "sf::Uint8", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Background.cpp(71,4): warning C4244: "argument": konwersja z "double" do "sf::Uint8", możliwa utrata danych
+  Board.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(14,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(15,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+  Food.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,63): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,60): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.cpp(65,37): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.cpp(70,32): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.cpp(75,41): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.cpp(80,37): warning C4305: "argument": obcięcie z "double" do "float"
+  Game.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,63): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,60): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(14,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(15,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,34): warning C4244: "argument": konwersja z "_Ty2" do "float", możliwa utrata danych
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,23): warning C4244: "argument": konwersja z "_Ty1" do "float", możliwa utrata danych
+          with
+          [
+              _Ty1=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.h(14,22): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(24,47): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(24,32): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(29,56): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(29,41): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(30,44): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(45,78): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(45,49): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(50,110): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(50,77): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(158,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(174,61): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Game.cpp(174,41): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+  GameSettings.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,34): warning C4244: "argument": konwersja z "_Ty2" do "float", możliwa utrata danych
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,23): warning C4244: "argument": konwersja z "_Ty1" do "float", możliwa utrata danych
+          with
+          [
+              _Ty1=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\GameSettings.cpp(27,40): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+  InGameSettingsWindow.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,34): warning C4244: "argument": konwersja z "_Ty2" do "float", możliwa utrata danych
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,23): warning C4244: "argument": konwersja z "_Ty1" do "float", możliwa utrata danych
+          with
+          [
+              _Ty1=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.h(14,22): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(50,52): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(50,34): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(52,45): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(52,31): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(53,62): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(53,40): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(54,52): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(54,34): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(56,45): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(56,31): warning C4244: "argument": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(57,62): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(57,40): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(60,78): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(60,49): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(64,110): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(64,77): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(80,54): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(85,54): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(99,54): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(110,43): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(111,43): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(116,45): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(117,45): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(121,43): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(124,45): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(131,72): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(131,46): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(135,101): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(135,71): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(144,83): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(144,49): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(149,120): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(149,82): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(158,64): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(158,42): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(163,89): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(163,63): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(226,18): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(228,18): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(264,22): warning C4305: "+=": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(269,22): warning C4305: "-=": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(278,18): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(288,22): warning C4305: "+=": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(293,22): warning C4305: "-=": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(302,18): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\utility(247,16): warning C4244: "inicjowanie": konwersja z "_Ty" do "_Ty1", możliwa utrata danych
+          with
+          [
+              _Ty=float
+          ]
+          and
+          [
+              _Ty1=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(70): message : zobacz odwołanie do kompilowanego tworzenia wystąpienia „std::pair<int,int>::pair<float,float,0>(std::pair<float,float> &&) noexcept” funkcji szablon
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.cpp(69): message : zobacz odwołanie do kompilowanego tworzenia wystąpienia „std::pair<int,int>::pair<float,float,0>(std::pair<float,float> &&) noexcept” funkcji szablon
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\utility(247,61): warning C4244: "inicjowanie": konwersja z "_Ty" do "_Ty2", możliwa utrata danych
+          with
+          [
+              _Ty=float
+          ]
+          and
+          [
+              _Ty2=int
+          ]
+  Logic.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,63): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,60): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(14,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(15,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\Logic.cpp(13,56): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\Logic.cpp(15,54): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\zygmu\Desktop\source\snake-game\src\Logic.cpp(77,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\zygmu\Desktop\source\snake-game\src\Logic.cpp(102,130): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Logic.cpp(102,63): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Logic.cpp(235,3): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Logic.cpp(234,75): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Logic.cpp(293,70): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Logic.cpp(293,3): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+  Menu.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,34): warning C4244: "argument": konwersja z "_Ty2" do "float", możliwa utrata danych
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,23): warning C4244: "argument": konwersja z "_Ty1" do "float", możliwa utrata danych
+          with
+          [
+              _Ty1=int
+          ]
+  MenuSettings.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,34): warning C4244: "argument": konwersja z "_Ty2" do "float", możliwa utrata danych
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,23): warning C4244: "argument": konwersja z "_Ty1" do "float", możliwa utrata danych
+          with
+          [
+              _Ty1=int
+          ]
+  Scoreboard.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\Scoreboard.cpp(48,72): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Scoreboard.cpp(48,46): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+  Sets.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,63): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,60): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(14,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(15,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,34): warning C4244: "argument": konwersja z "_Ty2" do "float", możliwa utrata danych
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,23): warning C4244: "argument": konwersja z "_Ty1" do "float", możliwa utrata danych
+          with
+          [
+              _Ty1=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.h(14,22): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+  Source.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,63): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,60): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(14,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(15,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,34): warning C4244: "argument": konwersja z "_Ty2" do "float", możliwa utrata danych
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,23): warning C4244: "argument": konwersja z "_Ty1" do "float", możliwa utrata danych
+          with
+          [
+              _Ty1=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.h(14,22): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+  TextGenResp.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,34): warning C4244: "argument": konwersja z "_Ty2" do "float", możliwa utrata danych
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,23): warning C4244: "argument": konwersja z "_Ty1" do "float", możliwa utrata danych
+          with
+          [
+              _Ty1=int
+          ]
+  TimeCounter.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\TimeCounter.cpp(70,66): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\TimeCounter.cpp(70,40): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+  Window.cpp
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,63): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Food.h(44,60): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(14,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\Board.h(15,72): warning C4244: "return": konwersja z "const T" do "unsigned short", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,34): warning C4244: "argument": konwersja z "_Ty2" do "float", możliwa utrata danych
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\TextGenResp.h(18,23): warning C4244: "argument": konwersja z "_Ty1" do "float", możliwa utrata danych
+          with
+          [
+              _Ty1=int
+          ]
+C:\Users\zygmu\Desktop\source\snake-game\src\InGameSettingsWindow.h(14,22): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+  Generowanie kodu...
+  LINK : nie znaleziono elementu C:\Users\zygmu\Desktop\source\snake-game\Debug\game-snake.exe ani nie został on skompilowany podczas ostatniego konsolidowania przyrostowego; zostanie wykonana pełna konsolidacja
   game-snake.vcxproj -> C:\Users\zygmu\Desktop\source\snake-game\Debug\game-snake.exe
